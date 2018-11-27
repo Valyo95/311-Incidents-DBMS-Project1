@@ -1,0 +1,17 @@
+<div class="container" >
+<h3>Change your password</h3>
+			<form class="form" ng-submit="changePassword()">
+		    Old password<input type="password" class="form-control" name="oldPass" id="oldPass" placeholder="Enter your old password" ng-model="changePasswordForm.oldPassword"/>
+		    New password<input type="password" class="form-control" name="newPass" id="newPass" placeholder="Enter your new password" ng-model="changePasswordForm.newPassword" required />
+		    New password<input type="password" class="form-control" name="newPass1" id="newPass1" placeholder="Retype your new password" ng-model="confirmPassword" required />
+		    <input type="submit" value="Change Password" class="blue-button btn btn-primary btn-block login-button" />
+		</form>
+</div>
+
+<div class="container" >
+<h3>Change your Username</h3>
+			<form class="form" ng-submit="changeUsername()">
+		    Username<input type="text" class="form-control" name="newUsername" id="newUsername" placeholder="Enter new username" ng-model="newUsername"/>
+		    <input type="submit" value="Change Username" class="blue-button btn btn-primary btn-block login-button" />
+		</form>
+</div>

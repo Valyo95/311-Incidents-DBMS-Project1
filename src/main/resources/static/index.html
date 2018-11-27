@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+    <head>
+    	<meta charset="UTF-16"> 
+	 	<base href="/">
+	 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		
+	
+		<link rel="stylesheet" href="css/style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+    	<script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-resource.js"></script>
+   		<script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+  	  	<script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-cookies.js"></script>
+        
+        <script src="js/checklist-model/checklist-model.js"></script>
+        <script src="js/angular-notify/angular-notify.js"></script>
+        <script src="js/angular-datepicker/angular-datepicker.js"></script>
+        <script src="js/angular-infinite/infinite-scroll.js"></script>
+
+		<link rel="stylesheet" href="js/angular-notify/angular-notify.css">
+		<link rel="stylesheet" href="js/angular-datepicker/angular-datepicker.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+				
+		<script src="js/app.js"></script>
+		<script src="js/navbarController.js"></script>
+		<script src="js/registerController.js"></script>
+		<script src="js/profileCtrl.js"></script>
+		<script src="js/FileSaver.js"></script>
+		<script src="js/settingsController.js"></script>
+		<script src="js/config.js"></script>
+		
+		<script src="pages/incidents/main.js"></script>
+		<script src="pages/settings/main.js"></script>
+	
+		<title>311 Chicago Incidents</title>
+
+		<script>
+	        $(document).ready(function(){
+	          // Add smooth scrolling to all links in navbar + footer link
+	          $(".navbar a,.mydrop a, footer a[href='#home'],#genres a,#subject_info a").on('click', function(event) {
+
+	           // Make sure this.hash has a value before overriding default behavior
+	          if (this.hash !== "") {
+
+	            // Prevent default anchor click behavior
+	            event.preventDefault();
+
+	            // Store hash
+	            var hash = this.hash;
+
+	            // Using jQuery's animate() method to add smooth page scroll
+	            // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+	            $('html, body').animate({
+	              scrollTop: $(hash).offset().top
+	            }, 900, function(){
+
+	              // Add hash (#) to URL when done scrolling (default click behavior)
+	              window.location.hash = hash;
+	              });
+	            } // End if
+	          });
+	        })
+
+		  $(document).ready(function () {
+    		$('#myNavbar').addClass('active');
+    	  });
+
+			$(document).ready(function(){
+			var measurer = $('<span>', {
+			   							style: "display:inline-block;word-break:break-word;visibility:hidden;white-space:pre-wrap;"})
+			   .appendTo('body');
+			function initMeasurerFor(textarea){
+			  if(!textarea[0].originalOverflowY){
+			  	textarea[0].originalOverflowY = textarea.css("overflow-y");    
+			  }  
+			  var maxWidth = textarea.css("max-width");
+			  measurer.text(textarea.text())
+			      .css("max-width", maxWidth == "none" ? textarea.width() + "px" : maxWidth)
+			      .css('font',textarea.css('font'))
+			      .css('overflow-y', textarea.css('overflow-y'))
+			      .css("max-height", textarea.css("max-height"))
+			      .css("min-height", textarea.css("min-height"))
+			      .css("min-width", textarea.css("min-width"))
+			      .css("padding", textarea.css("padding"))
+			      .css("border", textarea.css("border"))
+			      .css("box-sizing", textarea.css("box-sizing"))
+			}
+			function updateTextAreaSize(textarea){
+				textarea.height(measurer.height());
+			  var w = measurer.width();
+			  if(textarea[0].originalOverflowY == "auto"){
+			     	var mw = textarea.css("max-width");
+			      if(mw != "none"){
+			     		if(w == parseInt(mw)){
+			      		textarea.css("overflow-y", "auto");
+			     		} else {
+			         	textarea.css("overflow-y", "hidden");
+			     		}
+			      }
+			   }
+			   textarea.width(w + 2);
+			}
+			$('textarea.autofit').on({
+			    input: function(){      
+			      	var text = $(this).val();  
+			        if($(this).attr("preventEnter") == undefined){
+			      	   text = text.replace(/[\n]/g, "<br>&#8203;");
+			        }
+			      	measurer.html(text);                       
+			        updateTextAreaSize($(this));       
+			    },
+			    focus: function(){
+			     initMeasurerFor($(this));
+			    },
+			    keydown: function(e){
+			    	if(e.which == 13 && !e.shiftKey){
+			      	e.preventDefault();
+			      }
+			    }
+			});
+			});
+</script>
+	    </script>		
+	</head>
+	<body data-spy="scroll" data-target=".navbar" data-offset="60">
+		<div class="container myMargined">
+			<div class="navbar navbar-default navbar-fixed-top" ng-controller="NavbarController" ng-cloak>
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#home">311 Chicago Incidents</a>
+				</div>
+				<center>
+					<div class="navbar-collapse collapse" id="myNavbar">
+						<ul class="nav navbar-nav navbar-left">
+							<li ng-show="getIsLoggedIn()"><a href="/incidents">Home</a></li>
+							<li ng-show="getIsLoggedIn()"><a href="/report">Report an incident</a></li>
+							<li ng-show="getIsLoggedIn()"><a href="/sp1">SP1</a></li>
+							<li ng-show="getIsLoggedIn()"><a href="/sp2">SP2</a></li>
+							<li ng-show="getIsLoggedIn()"><a href="/sp3">SP3</a></li>
+							<li ng-show="getIsLoggedIn()"><a href="/settings">Profile Settings</a></li>
+						</ul>
+						<ul>
+							<form class="navbar-form navbar-right" role="search" ng-show="!getIsLoggedIn()" ng-submit="loginUser()" style="transition: all .5s;" ng-cloak>
+								<div class="form-group">
+									<input type="text" class="form-control" name="username" placeholder="Email" ng-model="loginForm.username">
+								</div>
+								<div class="form-group">
+									<input type="password" class="form-control" name="password" placeholder="Password" ng-model="loginForm.password">
+								</div>
+								<input type="submit" value="Login" class="btn btn-default"/>
+								<a class ="btn btn-default"  href="/register">Register</a>
+							</form>
+							
+							<div class="navbar-right" style="margin-right: 3em;" ng-show="getIsLoggedIn()" ng-cloak>
+								<li><b style="color: black" >Hello {{username}}</b> </li>
+								<li><img src="{{imagePath}}" class="img-rounded img-responsive myImage" ng-show="hasAPic()" ng-cloak/>	</li>			
+								<li><a class="" ng-click="logout()">Logout</a></li>
+							</div>
+						</ul>
+					</div>
+				</center>
+			</div>
+		</div>
+
+		<div ng-view></div>
+    </body>
+</html>

@@ -1,0 +1,91 @@
+<div class="container">
+	<div class="row main">
+		<div class="main-login main-center">
+			<form ng-submit="registerUser()" >
+				
+				<div class="form-group">
+					<label for="username" class="cols-sm-2 control-label">Your Username</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+							<input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/ ng-model="registerForm.username" required/>
+						</div>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="firstName" class="cols-sm-2 control-label">First name</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+							<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your first name" ng-model="registerForm.firstName" required/>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="lastName" class="cols-sm-2 control-label">Last name</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+							<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your last name" ng-model="registerForm.lastName" required/>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="email" class="cols-sm-2 control-label">Your Email</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+							<input type="email" class="form-control" name="email" id="email"  placeholder="Enter your Email"/ ng-model="registerForm.email" required/>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="phone" class="cols-sm-2 control-label">Your Phone number</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-phone fa" aria-hidden="true"></i></span>
+							<input type="tel" class="form-control" name="phone" id="phone"  placeholder="Enter your phone number"/ ng-model="registerForm.phone" required/>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="picture" class="cols-sm-2 control-label">Picture</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<input type="file" name="picture" file-model="picture" required />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="password" class="cols-sm-2 control-label">Password</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+							<input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password" ng-model="registerForm.password" required/>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+							<input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password" ng-model="confirmPassword" required/>
+						</div>
+					</div>
+				</div>
+				<div>
+					<p style="color:red"></p>
+				</div>
+				<div class="form-group ">
+					<input type="submit" value="Register" class="blue-button btn btn-primary btn-lg btn-block login-button"/>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

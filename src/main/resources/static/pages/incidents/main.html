@@ -1,0 +1,18 @@
+<div class="container">
+
+  <div ng-show="!getIsLoggedIn()" ng-cloak>
+    <h2 style="transition: all .5s;">Welcome to 311 Chicago Incidents! You must first register or login to browse the website<h2>
+  </div>
+  
+  <div ng-show="getIsLoggedIn()" ng-cloak>
+  
+    <div class="row rounded">
+      <div infinite-scroll="addIncidents()" infinite-scroll-distance="1" class="leftcolumn">
+        <div class="card" ng-repeat="incident in incidents">
+        <p>{{incident}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
