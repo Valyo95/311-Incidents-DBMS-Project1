@@ -1,18 +1,8 @@
 package com.incidents.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-
-import org.hibernate.annotations.ForeignKey;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import com.example.easynotes.enumerations.TypeOfServiceRequest;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="GARBAGE_CARTS")
@@ -45,8 +35,8 @@ public class GarbageCarts implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public GarbageCarts(int id, Complaint complaint, int blackCartsDelivered, String currentActivity,
-			String mostRecentAction, String ssa) {
+	public GarbageCarts(final int id, final Complaint complaint, final int blackCartsDelivered, final String currentActivity,
+			final String mostRecentAction, final String ssa) {
 		super();
 		this.id = id;
 		this.complaint = complaint;
@@ -60,7 +50,7 @@ public class GarbageCarts implements Serializable{
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(final int id) {
 		this.id = id;
 	}
 
@@ -68,7 +58,7 @@ public class GarbageCarts implements Serializable{
 		return complaint;
 	}
 
-	public void setComplaint(Complaint complaint) {
+	public void setComplaint(final Complaint complaint) {
 		this.complaint = complaint;
 	}
 
@@ -76,7 +66,7 @@ public class GarbageCarts implements Serializable{
 		return blackCartsDelivered;
 	}
 
-	public void setBlackCartsDelivered(int blackCartsDelivered) {
+	public void setBlackCartsDelivered(final int blackCartsDelivered) {
 		this.blackCartsDelivered = blackCartsDelivered;
 	}
 
@@ -84,7 +74,7 @@ public class GarbageCarts implements Serializable{
 		return currentActivity;
 	}
 
-	public void setCurrentActivity(String currentActivity) {
+	public void setCurrentActivity(final String currentActivity) {
 		this.currentActivity = currentActivity;
 	}
 
@@ -92,7 +82,7 @@ public class GarbageCarts implements Serializable{
 		return mostRecentAction;
 	}
 
-	public void setMostRecentAction(String mostRecentAction) {
+	public void setMostRecentAction(final String mostRecentAction) {
 		this.mostRecentAction = mostRecentAction;
 	}
 
@@ -100,7 +90,7 @@ public class GarbageCarts implements Serializable{
 		return ssa;
 	}
 
-	public void setSsa(String ssa) {
+	public void setSsa(final String ssa) {
 		this.ssa = ssa;
 	}
 

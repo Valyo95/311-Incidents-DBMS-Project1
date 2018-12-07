@@ -1,18 +1,8 @@
 package com.incidents.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-
-import org.hibernate.annotations.ForeignKey;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import com.example.easynotes.enumerations.TypeOfServiceRequest;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "LIGHTS_ALL_OUT")

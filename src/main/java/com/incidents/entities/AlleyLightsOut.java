@@ -1,31 +1,27 @@
 package com.incidents.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-
-import org.hibernate.annotations.ForeignKey;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import com.example.easynotes.enumerations.TypeOfServiceRequest;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
-@Table(name="ALLEY_LIGHTS_OUT")
-public class AlleyLightsOut implements Serializable{
+@Table(name = "ALLEY_LIGHTS_OUT")
+public class AlleyLightsOut implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@OneToOne
-	@JoinColumn(name = "srn", referencedColumnName="srn")
-    private Complaint complaint;
+	@JoinColumn(name = "srn", referencedColumnName = "srn")
+	private Complaint complaint;
 
 	public AlleyLightsOut() {
 		super();
@@ -62,6 +58,5 @@ public class AlleyLightsOut implements Serializable{
 	public String toString() {
 		return "AlleyLightsOut [id=" + id + ", complaint=" + complaint + "]";
 	}
-	
-	
+
 }

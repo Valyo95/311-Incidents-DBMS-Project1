@@ -1,51 +1,41 @@
 package com.incidents.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-
-import org.hibernate.annotations.ForeignKey;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import com.example.easynotes.enumerations.TypeOfServiceRequest;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name="ABANDONED_VEHICLES")
-public class AbandonedVehicles implements Serializable{
+@Table(name = "ABANDONED_VEHICLES")
+public class AbandonedVehicles implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@OneToOne
-	@JoinColumn(name = "srn", referencedColumnName="srn")
-    private Complaint complaint;
-	
+	@JoinColumn(name = "srn", referencedColumnName = "srn")
+	private Complaint complaint;
+
 	@Column(name = "LICENSE_PLATE", length = 200)
 	private String licensePlate;
-	
+
 	@Column(name = "MODEL", length = 200)
 	private String model;
 
 	@Column(name = "COLOR")
 	private String color;
-	
-	@Column(name = "CURRENT_ACTIVITY" , length = 200)
+
+	@Column(name = "CURRENT_ACTIVITY", length = 200)
 	private String currentActivity;
-	
-	@Column(name = "MOST_RECENT_ACTION" , length = 200)
+
+	@Column(name = "MOST_RECENT_ACTION", length = 200)
 	private String mostRecentAction;
 
 	@Column(name = "DAYS_ABANDONED")
 	private int daysAbandoned;
 
-	@Column(name = "SSA" , length = 200)
+	@Column(name = "SSA", length = 200)
 	private String ssa;
 
 	public AbandonedVehicles() {
@@ -148,7 +138,5 @@ public class AbandonedVehicles implements Serializable{
 				+ ", model=" + model + ", color=" + color + ", currentActivity=" + currentActivity
 				+ ", mostRecentAction=" + mostRecentAction + ", daysAbandoned=" + daysAbandoned + ", ssa=" + ssa + "]";
 	}
-	
-	
-	
+
 }

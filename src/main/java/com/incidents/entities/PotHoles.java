@@ -1,42 +1,31 @@
 package com.incidents.entities;
 
 import java.io.Serializable;
-import java.util.Date;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-
-import org.hibernate.annotations.ForeignKey;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import com.example.easynotes.enumerations.TypeOfServiceRequest;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name="POT_HOLS")
-public class PotHoles implements Serializable{
+@Table(name = "POT_HOLS")
+public class PotHoles implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@OneToOne
-	@JoinColumn(name = "srn", referencedColumnName="srn")
-    private Complaint complaint;
-	
-	@Column(name = "CURRENT_ACTIVITY" , length = 200)
+	@JoinColumn(name = "srn", referencedColumnName = "srn")
+	private Complaint complaint;
+
+	@Column(name = "CURRENT_ACTIVITY", length = 200)
 	private String currentActivity;
-	
-	@Column(name = "MOST_RECENT_ACTION" , length = 200)
+
+	@Column(name = "MOST_RECENT_ACTION", length = 200)
 	private String mostRecentAction;
-	
+
 	@Column(name = "POT_HOLS")
 	private int potHoles;
 
-	@Column(name = "SSA" , length = 200)
+	@Column(name = "SSA", length = 200)
 	private String ssa;
 
 	public PotHoles() {
