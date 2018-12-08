@@ -64,11 +64,11 @@ public class AbandonedVehicles implements Serializable {
 		this.id = id;
 	}
 
-	public Incident getComplaint() {
+	public Incident getIncident() {
 		return incident;
 	}
 
-	public void setComplaint(Incident incident) {
+	public void setIncident(Incident incident) {
 		this.incident = incident;
 	}
 

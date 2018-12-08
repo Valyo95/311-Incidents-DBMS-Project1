@@ -54,11 +54,11 @@ public class GarbageCarts implements Serializable{
 		this.id = id;
 	}
 
-	public Incident getComplaint() {
+	public Incident getIncident() {
 		return incident;
 	}
 
-	public void setComplaint(final Incident incident) {
+	public void setIncident(final Incident incident) {
 		this.incident = incident;
 	}
 
