@@ -15,17 +15,17 @@ public class LightsAllOut implements Serializable {
 
 	@OneToOne
 	@JoinColumn(name = "srn", referencedColumnName = "srn")
-	private Complaint complaint;
+	private Incident incident;
 
 	public LightsAllOut() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public LightsAllOut(int id, Complaint complaint) {
+	public LightsAllOut(int id, Incident incident) {
 		super();
 		this.id = id;
-		this.complaint = complaint;
+		this.incident = incident;
 	}
 
 	public int getId() {
@@ -36,12 +36,12 @@ public class LightsAllOut implements Serializable {
 		this.id = id;
 	}
 
-	public Complaint getComplaint() {
-		return complaint;
+	public Incident getComplaint() {
+		return incident;
 	}
 
-	public void setComplaint(Complaint complaint) {
-		this.complaint = complaint;
+	public void setComplaint(Incident incident) {
+		this.incident = incident;
 	}
 
 	public static long getSerialversionuid() {
@@ -50,7 +50,7 @@ public class LightsAllOut implements Serializable {
 
 	@Override
 	public String toString() {
-		return "LightsAllOut [id=" + id + ", complaint=" + complaint + "]";
+		return "LightsAllOut [id=" + id + ", incident=" + incident + "]";
 	}
 
 }

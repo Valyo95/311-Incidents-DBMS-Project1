@@ -15,7 +15,7 @@ public class GarbageCarts implements Serializable{
 	
 	@OneToOne
 	@JoinColumn(name = "srn", referencedColumnName="srn")
-    private Complaint complaint;
+    private Incident incident;
 	
 
 	@Column(name = "BLACK_CARTS_DELIEVRED")
@@ -35,11 +35,11 @@ public class GarbageCarts implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public GarbageCarts(final int id, final Complaint complaint, final int blackCartsDelivered, final String currentActivity,
+	public GarbageCarts(final int id, final Incident incident, final int blackCartsDelivered, final String currentActivity,
 			final String mostRecentAction, final String ssa) {
 		super();
 		this.id = id;
-		this.complaint = complaint;
+		this.incident = incident;
 		this.blackCartsDelivered = blackCartsDelivered;
 		this.currentActivity = currentActivity;
 		this.mostRecentAction = mostRecentAction;
@@ -54,12 +54,12 @@ public class GarbageCarts implements Serializable{
 		this.id = id;
 	}
 
-	public Complaint getComplaint() {
-		return complaint;
+	public Incident getComplaint() {
+		return incident;
 	}
 
-	public void setComplaint(final Complaint complaint) {
-		this.complaint = complaint;
+	public void setComplaint(final Incident incident) {
+		this.incident = incident;
 	}
 
 	public int getBlackCartsDelivered() {
@@ -100,7 +100,7 @@ public class GarbageCarts implements Serializable{
 
 	@Override
 	public String toString() {
-		return "GarbageCarts [id=" + id + ", complaint=" + complaint + ", blackCartsDelivered=" + blackCartsDelivered
+		return "GarbageCarts [id=" + id + ", incident=" + incident + ", blackCartsDelivered=" + blackCartsDelivered
 				+ ", currentActivity=" + currentActivity + ", mostRecentAction=" + mostRecentAction + ", ssa=" + ssa
 				+ "]";
 	}

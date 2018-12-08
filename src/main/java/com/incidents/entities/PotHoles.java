@@ -14,7 +14,7 @@ public class PotHoles implements Serializable {
 
 	@OneToOne
 	@JoinColumn(name = "srn", referencedColumnName = "srn")
-	private Complaint complaint;
+	private Incident incident;
 
 	@Column(name = "CURRENT_ACTIVITY", length = 200)
 	private String currentActivity;
@@ -33,11 +33,11 @@ public class PotHoles implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PotHoles(int id, Complaint complaint, String currentActivity, String mostRecentAction, int potHoles,
+	public PotHoles(int id, Incident incident, String currentActivity, String mostRecentAction, int potHoles,
 			String ssa) {
 		super();
 		this.id = id;
-		this.complaint = complaint;
+		this.incident = incident;
 		this.currentActivity = currentActivity;
 		this.mostRecentAction = mostRecentAction;
 		this.potHoles = potHoles;
@@ -52,12 +52,12 @@ public class PotHoles implements Serializable {
 		this.id = id;
 	}
 
-	public Complaint getComplaint() {
-		return complaint;
+	public Incident getComplaint() {
+		return incident;
 	}
 
-	public void setComplaint(Complaint complaint) {
-		this.complaint = complaint;
+	public void setComplaint(Incident incident) {
+		this.incident = incident;
 	}
 
 	public String getCurrentActivity() {
@@ -98,7 +98,7 @@ public class PotHoles implements Serializable {
 
 	@Override
 	public String toString() {
-		return "PotHoles [id=" + id + ", complaint=" + complaint + ", currentActivity=" + currentActivity
+		return "PotHoles [id=" + id + ", incident=" + incident + ", currentActivity=" + currentActivity
 				+ ", mostRecentAction=" + mostRecentAction + ", potHoles=" + potHoles + ", ssa=" + ssa + "]";
 	}
 

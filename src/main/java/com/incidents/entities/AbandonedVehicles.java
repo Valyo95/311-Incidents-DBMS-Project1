@@ -15,7 +15,7 @@ public class AbandonedVehicles implements Serializable {
 
 	@OneToOne
 	@JoinColumn(name = "srn", referencedColumnName = "srn")
-	private Complaint complaint;
+	private Incident incident;
 
 	@Column(name = "LICENSE_PLATE", length = 200)
 	private String licensePlate;
@@ -43,10 +43,10 @@ public class AbandonedVehicles implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public AbandonedVehicles(Complaint complaint, String licensePlate, String model, String color,
+	public AbandonedVehicles(Incident incident, String licensePlate, String model, String color,
 			String currentActivity, String mostRecentAction, int daysAbandoned, String ssa) {
 		super();
-		this.complaint = complaint;
+		this.incident = incident;
 		this.licensePlate = licensePlate;
 		this.model = model;
 		this.color = color;
@@ -64,12 +64,12 @@ public class AbandonedVehicles implements Serializable {
 		this.id = id;
 	}
 
-	public Complaint getComplaint() {
-		return complaint;
+	public Incident getComplaint() {
+		return incident;
 	}
 
-	public void setComplaint(Complaint complaint) {
-		this.complaint = complaint;
+	public void setComplaint(Incident incident) {
+		this.incident = incident;
 	}
 
 	public String getLicensePlate() {
@@ -134,7 +134,7 @@ public class AbandonedVehicles implements Serializable {
 
 	@Override
 	public String toString() {
-		return "AbandonedVehicles [id=" + id + ", complaint=" + complaint + ", licensePlate=" + licensePlate
+		return "AbandonedVehicles [id=" + id + ", incident=" + incident + ", licensePlate=" + licensePlate
 				+ ", model=" + model + ", color=" + color + ", currentActivity=" + currentActivity
 				+ ", mostRecentAction=" + mostRecentAction + ", daysAbandoned=" + daysAbandoned + ", ssa=" + ssa + "]";
 	}

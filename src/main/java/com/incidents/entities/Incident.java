@@ -11,8 +11,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 import com.incidents.enumerations.TypeOfServiceRequest;
 
 @Entity
-@Table(name = "COMPLAINT")
-public class Complaint implements Serializable {
+@Table(name = "INCIDENT")
+public class Incident implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -62,11 +62,11 @@ public class Complaint implements Serializable {
 	@LastModifiedDate
 	private Date completionDate;
 
-	public Complaint() {
+	public Incident() {
 		super();
 	}
 
-	public Complaint(String srn, String status, TypeOfServiceRequest type, String streetAddress, int xCoordinate,
+	public Incident(String srn, String status, TypeOfServiceRequest type, String streetAddress, int xCoordinate,
 			int yCoordinate, int ward, int policeDistrict, int communityArea, int latitude, int longitude,
 			String location, Date createdAt, Date completionDate) {
 		super();

@@ -15,7 +15,7 @@ public class TreeDebris implements Serializable {
 
 	@OneToOne
 	@JoinColumn(name = "srn", referencedColumnName = "srn")
-	private Complaint complaint;
+	private Incident incident;
 
 	@Column(name = "LOCATION", length = 200)
 	private String location;
@@ -31,10 +31,10 @@ public class TreeDebris implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TreeDebris(int id, Complaint complaint, String location, String currentActivity, String mostRecentAction) {
+	public TreeDebris(int id, Incident incident, String location, String currentActivity, String mostRecentAction) {
 		super();
 		this.id = id;
-		this.complaint = complaint;
+		this.incident = incident;
 		this.location = location;
 		this.currentActivity = currentActivity;
 		this.mostRecentAction = mostRecentAction;
@@ -48,12 +48,12 @@ public class TreeDebris implements Serializable {
 		this.id = id;
 	}
 
-	public Complaint getComplaint() {
-		return complaint;
+	public Incident getComplaint() {
+		return incident;
 	}
 
-	public void setComplaint(Complaint complaint) {
-		this.complaint = complaint;
+	public void setComplaint(Incident incident) {
+		this.incident = incident;
 	}
 
 	public String getLocation() {
@@ -86,7 +86,7 @@ public class TreeDebris implements Serializable {
 
 	@Override
 	public String toString() {
-		return "TreeDebris [id=" + id + ", complaint=" + complaint + ", location=" + location + ", currentActivity="
+		return "TreeDebris [id=" + id + ", incident=" + incident + ", location=" + location + ", currentActivity="
 				+ currentActivity + ", mostRecentAction=" + mostRecentAction + "]";
 	}
 

@@ -15,7 +15,7 @@ public class RodentBaiting implements Serializable {
 
 	@OneToOne
 	@JoinColumn(name = "srn", referencedColumnName = "srn")
-	private Complaint complaint;
+	private Incident incident;
 
 	@Column(name = "PREMISES_BAITED")
 	private int premisesBaited;
@@ -37,12 +37,12 @@ public class RodentBaiting implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public RodentBaiting(final int id, final Complaint complaint, final int premisesBaited,
+	public RodentBaiting(final int id, final Incident incident, final int premisesBaited,
 			final int premisesWithGarbage, final int premisesWithRats, final String currentActivity,
 			final String mostRecentAction) {
 		super();
 		this.id = id;
-		this.complaint = complaint;
+		this.incident = incident;
 		this.premisesBaited = premisesBaited;
 		this.premisesWithGarbage = premisesWithGarbage;
 		this.premisesWithRats = premisesWithRats;
@@ -58,12 +58,12 @@ public class RodentBaiting implements Serializable {
 		this.id = id;
 	}
 
-	public Complaint getComplaint() {
-		return complaint;
+	public Incident getComplaint() {
+		return incident;
 	}
 
-	public void setComplaint(final Complaint complaint) {
-		this.complaint = complaint;
+	public void setComplaint(final Incident incident) {
+		this.incident = incident;
 	}
 
 	public int getPremisesBaited() {
@@ -112,7 +112,7 @@ public class RodentBaiting implements Serializable {
 
 	@Override
 	public String toString() {
-		return "RodentBaiting [id=" + id + ", complaint=" + complaint + ", premisesBaited=" + premisesBaited
+		return "RodentBaiting [id=" + id + ", incident=" + incident + ", premisesBaited=" + premisesBaited
 				+ ", premisesWithGarbage=" + premisesWithGarbage + ", premisesWithRats=" + premisesWithRats
 				+ ", currentActivity=" + currentActivity + ", mostRecentAction=" + mostRecentAction + "]";
 	}

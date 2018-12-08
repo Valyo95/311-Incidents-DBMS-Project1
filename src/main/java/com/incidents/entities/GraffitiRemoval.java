@@ -15,7 +15,7 @@ public class GraffitiRemoval implements Serializable {
 
 	@OneToOne
 	@JoinColumn(name = "srn", referencedColumnName = "srn")
-	private Complaint complaint;
+	private Incident incident;
 
 	@Column(name = "TYPE_OF_SURFACE", length = 200)
 	private String typeOfSurface;
@@ -31,10 +31,10 @@ public class GraffitiRemoval implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public GraffitiRemoval(int id, Complaint complaint, String typeOfSurface, String located, String ssa) {
+	public GraffitiRemoval(int id, Incident incident, String typeOfSurface, String located, String ssa) {
 		super();
 		this.id = id;
-		this.complaint = complaint;
+		this.incident = incident;
 		this.typeOfSurface = typeOfSurface;
 		this.located = located;
 		this.ssa = ssa;
@@ -48,12 +48,12 @@ public class GraffitiRemoval implements Serializable {
 		this.id = id;
 	}
 
-	public Complaint getComplaint() {
-		return complaint;
+	public Incident getComplaint() {
+		return incident;
 	}
 
-	public void setComplaint(Complaint complaint) {
-		this.complaint = complaint;
+	public void setComplaint(Incident incident) {
+		this.incident = incident;
 	}
 
 	public String getTypeOfSurface() {
@@ -86,7 +86,7 @@ public class GraffitiRemoval implements Serializable {
 
 	@Override
 	public String toString() {
-		return "GraffitiRemoval [id=" + id + ", complaint=" + complaint + ", typeOfSurface=" + typeOfSurface
+		return "GraffitiRemoval [id=" + id + ", incident=" + incident + ", typeOfSurface=" + typeOfSurface
 				+ ", located=" + located + ", ssa=" + ssa + "]";
 	}
 

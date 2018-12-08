@@ -15,7 +15,7 @@ public class TreeTrims implements Serializable {
 
 	@OneToOne
 	@JoinColumn(name = "srn", referencedColumnName = "srn")
-	private Complaint complaint;
+	private Incident incident;
 
 	@Column(name = "LOCATION", length = 200)
 	private String location;
@@ -25,10 +25,10 @@ public class TreeTrims implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TreeTrims(int id, Complaint complaint, String location) {
+	public TreeTrims(int id, Incident incident, String location) {
 		super();
 		this.id = id;
-		this.complaint = complaint;
+		this.incident = incident;
 		this.location = location;
 	}
 
@@ -40,12 +40,12 @@ public class TreeTrims implements Serializable {
 		this.id = id;
 	}
 
-	public Complaint getComplaint() {
-		return complaint;
+	public Incident getComplaint() {
+		return incident;
 	}
 
-	public void setComplaint(Complaint complaint) {
-		this.complaint = complaint;
+	public void setComplaint(Incident incident) {
+		this.incident = incident;
 	}
 
 	public String getLocation() {
@@ -62,7 +62,7 @@ public class TreeTrims implements Serializable {
 
 	@Override
 	public String toString() {
-		return "TreeTrims [id=" + id + ", complaint=" + complaint + ", location=" + location + "]";
+		return "TreeTrims [id=" + id + ", incident=" + incident + ", location=" + location + "]";
 	}
 
 }

@@ -15,7 +15,7 @@ public class SanitationCodeComplaints implements Serializable {
 
 	@OneToOne
 	@JoinColumn(name = "srn", referencedColumnName = "srn")
-	private Complaint complaint;
+	private Incident incident;
 
 	@Column(name = "NATURE_OF_VIOLATION", length = 200)
 	private String natureOfViolation;
@@ -25,10 +25,10 @@ public class SanitationCodeComplaints implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public SanitationCodeComplaints(int id, Complaint complaint, String natureOfViolation) {
+	public SanitationCodeComplaints(int id, Incident incident, String natureOfViolation) {
 		super();
 		this.id = id;
-		this.complaint = complaint;
+		this.incident = incident;
 		this.natureOfViolation = natureOfViolation;
 	}
 
@@ -40,12 +40,12 @@ public class SanitationCodeComplaints implements Serializable {
 		this.id = id;
 	}
 
-	public Complaint getComplaint() {
-		return complaint;
+	public Incident getComplaint() {
+		return incident;
 	}
 
-	public void setComplaint(Complaint complaint) {
-		this.complaint = complaint;
+	public void setComplaint(Incident incident) {
+		this.incident = incident;
 	}
 
 	public String getNatureOfViolation() {
@@ -62,7 +62,7 @@ public class SanitationCodeComplaints implements Serializable {
 
 	@Override
 	public String toString() {
-		return "SanitationCodeComplaints [id=" + id + ", complaint=" + complaint + ", natureOfViolation="
+		return "SanitationCodeComplaints [id=" + id + ", incident=" + incident + ", natureOfViolation="
 				+ natureOfViolation + "]";
 	}
 
