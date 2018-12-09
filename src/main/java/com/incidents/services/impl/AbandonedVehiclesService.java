@@ -10,18 +10,23 @@ import com.incidents.entities.AbandonedVehicles;
 import com.incidents.entities.Incident;
 import com.incidents.enumerations.TypeOfServiceRequest;
 import com.incidents.repositories.AbandonedVehiclesDAO;
+import com.incidents.repositories.IncidentDAO;
 
 @Service("AbandonedVehicles")
 public class AbandonedVehiclesService {
 
 	@Autowired
+	IncidentDAO incidentDao;
+	
+	@Autowired
 	AbandonedVehiclesDAO dao;
 	
 	@Transactional
-	public AbandonedVehicles create(String status, String streetAddress, int xCoordinate,
-			int yCoordinate, int ward, int policeDistrict, int communityArea, int latitude, int longitude,
-			String location, String licensePlate, String model, String color, String currentActivity, String mostRecentAction, int daysAbandoned, String ssa) {
+	public AbandonedVehicles create(String status, String streetAddress, Integer xCoordinate,
+			Integer yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Integer latitude, Integer longitude,
+			String location, String licensePlate, String model, String color, String currentActivity, String mostRecentAction, Integer daysAbandoned, String ssa) {
 		Incident newIncident = new Incident();
+		newIncident.setCreatedAt(new Date());
 		newIncident.setType(TypeOfServiceRequest.ABANDONED_VEHICLES);
 		newIncident.setStatus(status);
 		newIncident.setStreetAddress(streetAddress);
@@ -33,6 +38,7 @@ public class AbandonedVehiclesService {
 		newIncident.setLatitude(latitude);
 		newIncident.setLongitude(longitude);
 		newIncident.setLocation(location);
+		incidentDao.save(newIncident);
 		
 		AbandonedVehicles newAbandonedVehicle = new AbandonedVehicles();
 		newAbandonedVehicle.setIncident(newIncident);

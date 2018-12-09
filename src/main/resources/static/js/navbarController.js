@@ -69,7 +69,7 @@ appControllers
 	    
 	    function _errorLogin(response) {
 	        console.log(response.statusText);
-	        notify({message:'Wrong email or password!', duration: 2000});
+	        notify({message:'Wrong username or password!', duration: 2000});
 	        
 	    }
 	    

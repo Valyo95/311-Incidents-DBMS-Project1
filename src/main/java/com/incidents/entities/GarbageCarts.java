@@ -11,7 +11,7 @@ public class GarbageCarts implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	@OneToOne
 	@JoinColumn(name = "srn", referencedColumnName="srn")
@@ -19,7 +19,7 @@ public class GarbageCarts implements Serializable{
 	
 
 	@Column(name = "BLACK_CARTS_DELIEVRED")
-	private int blackCartsDelivered;
+	private Integer blackCartsDelivered;
 
 	@Column(name = "CURRENT_ACTIVITY" , length = 200)
 	private String currentActivity;
@@ -35,7 +35,7 @@ public class GarbageCarts implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public GarbageCarts(final int id, final Incident incident, final int blackCartsDelivered, final String currentActivity,
+	public GarbageCarts(final Integer id, final Incident incident, final Integer blackCartsDelivered, final String currentActivity,
 			final String mostRecentAction, final String ssa) {
 		super();
 		this.id = id;
@@ -46,11 +46,11 @@ public class GarbageCarts implements Serializable{
 		this.ssa = ssa;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(final int id) {
+	public void setId(final Integer id) {
 		this.id = id;
 	}
 
@@ -62,11 +62,11 @@ public class GarbageCarts implements Serializable{
 		this.incident = incident;
 	}
 
-	public int getBlackCartsDelivered() {
+	public Integer getBlackCartsDelivered() {
 		return blackCartsDelivered;
 	}
 
-	public void setBlackCartsDelivered(final int blackCartsDelivered) {
+	public void setBlackCartsDelivered(final Integer blackCartsDelivered) {
 		this.blackCartsDelivered = blackCartsDelivered;
 	}
 

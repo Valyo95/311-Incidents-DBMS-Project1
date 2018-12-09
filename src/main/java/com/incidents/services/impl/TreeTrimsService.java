@@ -10,19 +10,24 @@ import com.incidents.entities.Incident;
 import com.incidents.entities.TreeTrims;
 import com.incidents.enumerations.TypeOfServiceRequest;
 import com.incidents.repositories.AbandonedVehiclesDAO;
+import com.incidents.repositories.IncidentDAO;
 import com.incidents.repositories.TreeTrimsDAO;
 
 @Service("TreeTrims")
 public class TreeTrimsService {
-
+	
+	@Autowired
+	IncidentDAO incidentDao;
+	
 	@Autowired
 	TreeTrimsDAO dao;
 	
 	@Transactional
-	public TreeTrims create(String status, String streetAddress, int xCoordinate,
-			int yCoordinate, int ward, int policeDistrict, int communityArea, int latitude, int longitude,
+	public TreeTrims create(String status, String streetAddress, Integer xCoordinate,
+			Integer yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Integer latitude, Integer longitude,
 			String location, String location2) {
 		Incident newIncident = new Incident();
+		newIncident.setCreatedAt(new Date());
 		newIncident.setType(TypeOfServiceRequest.TREE_TRIMS);
 		newIncident.setStatus(status);
 		newIncident.setStreetAddress(streetAddress);
@@ -34,6 +39,7 @@ public class TreeTrimsService {
 		newIncident.setLatitude(latitude);
 		newIncident.setLongitude(longitude);
 		newIncident.setLocation(location);
+		incidentDao.save(newIncident);
 		
 		TreeTrims newTreeTrims = new TreeTrims();
 		newTreeTrims.setIncident(newIncident);

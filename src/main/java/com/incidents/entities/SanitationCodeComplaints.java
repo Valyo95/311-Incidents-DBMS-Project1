@@ -11,7 +11,7 @@ public class SanitationCodeComplaints implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	@OneToOne
 	@JoinColumn(name = "srn", referencedColumnName = "srn")
@@ -25,18 +25,18 @@ public class SanitationCodeComplaints implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public SanitationCodeComplaints(int id, Incident incident, String natureOfViolation) {
+	public SanitationCodeComplaints(Integer id, Incident incident, String natureOfViolation) {
 		super();
 		this.id = id;
 		this.incident = incident;
 		this.natureOfViolation = natureOfViolation;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

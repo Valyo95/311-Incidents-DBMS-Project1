@@ -11,7 +11,7 @@ public class LightsAllOut implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	@OneToOne
 	@JoinColumn(name = "srn", referencedColumnName = "srn")
@@ -22,17 +22,17 @@ public class LightsAllOut implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public LightsAllOut(int id, Incident incident) {
+	public LightsAllOut(Integer id, Incident incident) {
 		super();
 		this.id = id;
 		this.incident = incident;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

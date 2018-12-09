@@ -11,20 +11,20 @@ public class RodentBaiting implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	@OneToOne
 	@JoinColumn(name = "srn", referencedColumnName = "srn")
 	private Incident incident;
 
 	@Column(name = "PREMISES_BAITED")
-	private int premisesBaited;
+	private Integer premisesBaited;
 
 	@Column(name = "PREMISES_WITH_GARBAGE")
-	private int premisesWithGarbage;
+	private Integer premisesWithGarbage;
 
 	@Column(name = "PREMISES_WITH_RATS")
-	private int premisesWithRats;
+	private Integer premisesWithRats;
 
 	@Column(name = "CURRENT_ACTIVITY", length = 200)
 	private String currentActivity;
@@ -37,8 +37,8 @@ public class RodentBaiting implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public RodentBaiting(final int id, final Incident incident, final int premisesBaited,
-			final int premisesWithGarbage, final int premisesWithRats, final String currentActivity,
+	public RodentBaiting(final Integer id, final Incident incident, final Integer premisesBaited,
+			final Integer premisesWithGarbage, final Integer premisesWithRats, final String currentActivity,
 			final String mostRecentAction) {
 		super();
 		this.id = id;
@@ -50,11 +50,11 @@ public class RodentBaiting implements Serializable {
 		this.mostRecentAction = mostRecentAction;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(final int id) {
+	public void setId(final Integer id) {
 		this.id = id;
 	}
 
@@ -66,27 +66,27 @@ public class RodentBaiting implements Serializable {
 		this.incident = incident;
 	}
 
-	public int getPremisesBaited() {
+	public Integer getPremisesBaited() {
 		return premisesBaited;
 	}
 
-	public void setPremisesBaited(final int premisesBaited) {
+	public void setPremisesBaited(final Integer premisesBaited) {
 		this.premisesBaited = premisesBaited;
 	}
 
-	public int getPremisesWithGarbage() {
+	public Integer getPremisesWithGarbage() {
 		return premisesWithGarbage;
 	}
 
-	public void setPremisesWithGarbage(final int premisesWithGarbage) {
+	public void setPremisesWithGarbage(final Integer premisesWithGarbage) {
 		this.premisesWithGarbage = premisesWithGarbage;
 	}
 
-	public int getPremisesWithRats() {
+	public Integer getPremisesWithRats() {
 		return premisesWithRats;
 	}
 
-	public void setPremisesWithRats(final int premisesWithRats) {
+	public void setPremisesWithRats(final Integer premisesWithRats) {
 		this.premisesWithRats = premisesWithRats;
 	}
 

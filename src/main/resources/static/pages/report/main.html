@@ -1,0 +1,412 @@
+<div class="container">
+
+  <div ng-show="!getIsLoggedIn()" ng-cloak>
+    <h2 style="transition: all .5s;">Report an incident<h2>
+  </div>
+  
+  <div ng-show="getIsLoggedIn()" ng-cloak>
+  
+    <div class="row">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="location">Service Request Type:</label>
+      <div class="col-sm-6">
+        <select ng-model="selectedRequestType" ng-options="type for type in requestTypes"
+                ng-change="updateEndpointPath()">
+        </select>
+      </div>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="form-group">
+          <label class="control-label col-sm-2" for="status">Status:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="status" placeholder="Enter status" name="status" ng-model="defaultCreateParams.status">
+           </div>
+    </div>
+    </div> 
+
+    <div class="row">
+    <div class="form-group">
+          <label class="control-label col-sm-2" for="streetAddress">Street Address:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="streetAddress" placeholder="Enter Street Address" name="streetAddress" ng-model="defaultCreateParams.streetAddress">
+           </div>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="form-group">
+          <label class="control-label col-sm-2" for="xCoordinate">X Coordinate:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="xCoordinate" placeholder="Enter X Coordinate" name="xCoordinate" ng-model="defaultCreateParams.xCoordinate">
+           </div>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="form-group">
+          <label class="control-label col-sm-2" for="yCoordinate">Y Coordinate:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="yCoordinate" placeholder="Enter Y Coordinate" name="yCoordinate" ng-model="defaultCreateParams.yCoordinate">
+           </div>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="form-group">
+          <label class="control-label col-sm-2" for="ward">Ward:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="ward" placeholder="Enter Ward" name="ward" ng-model="defaultCreateParams.ward">
+           </div>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="form-group">
+          <label class="control-label col-sm-2" for="srn">Police District:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="policeDistrict" placeholder="Enter Police District" name="policeDistrict" ng-model="defaultCreateParams.policeDistrict">
+           </div>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="form-group">
+          <label class="control-label col-sm-2" for="srn">Community Area:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="communityArea" placeholder="Enter Community Area" name="communityArea" ng-model="defaultCreateParams.communityArea">
+           </div>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="form-group">
+          <label class="control-label col-sm-2" for="latitude">Latitude:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="latitude" placeholder="Enter latitude" name="latitude" ng-model="defaultCreateParams.latitude">
+           </div>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="form-group">
+          <label class="control-label col-sm-2" for="longitude">Longitude:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="longitude" placeholder="Enter longitude" name="longitude" ng-model="defaultCreateParams.longitude">
+           </div>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="form-group">
+          <label class="control-label col-sm-2" for="location">Location:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="location" placeholder="Enter location" name="location" ng-model="defaultCreateParams.location">
+           </div>
+    </div>
+    </div>
+
+    <!-- abandonedVehicles -->
+    <div ng-show="selectedRequestType == requestTypes[0]">
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="licensePlate">License Plate:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="licensePlate" placeholder="Enter License Plate" name="licensePlate" ng-model="abandonedVehiclesParams.licensePlate">
+           </div>
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="model">Model:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="model" placeholder="Enter model" name="model" ng-model="abandonedVehiclesParams.model">
+           </div>
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="color">Color:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="color" placeholder="Enter color" name="color" ng-model="abandonedVehiclesParams.color">
+           </div>
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="currentActivity">Current Activity:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="currentActivity" placeholder="Enter current activity" name="currentActivity" ng-model="abandonedVehiclesParams.currentActivity">
+           </div>
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="mostRecentAction">Most Recent Action:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="mostRecentAction" placeholder="Enter most recent action" name="mostRecentAction" ng-model="abandonedVehiclesParams.mostRecentAction">
+           </div>
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="daysAbandoned">Days Abandoned:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="daysAbandoned" placeholder="Enter days abandoned" name="daysAbandoned" ng-model="abandonedVehiclesParams.daysAbandoned">
+           </div>
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="ssa">SSA:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="ssa" placeholder="Enter SSA" name="ssa" ng-model="abandonedVehiclesParams.ssa">
+           </div>
+      </div>
+      </div>
+
+    </div>
+
+    <!-- garbageCarts -->
+    <div ng-show="selectedRequestType == requestTypes[2]">
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="blackCartsDelivered">Black Carts Delivered:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="blackCartsDelivered" placeholder="Enter black carts delivered" name="blackCartsDelivered" ng-model="garbageCartsParams.blackCartsDelivered">
+           </div>
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="currentActivity">Current Activity:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="currentActivity" placeholder="Enter current activity" name="currentActivity" ng-model="garbageCartsParams.currentActivity">
+           </div>
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="mostRecentAction">Most Recent Action:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="mostRecentAction" placeholder="Enter most recent action" name="mostRecentAction" ng-model="garbageCartsParams.mostRecentAction">
+           </div>
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="ssa">SSA:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="ssa" placeholder="Enter SSA" name="ssa" ng-model="garbageCartsParams.ssa">
+           </div>
+      </div>
+      </div>
+
+    </div>
+
+    <!-- graffitiRemoval -->
+    <div ng-show="selectedRequestType == requestTypes[3]">
+      
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="typeOfSurface">Τype οf Surface:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="typeOfSurface" placeholder="Enter type of surface" name="typeOfSurface" ng-model="graffitiRemovalParams.typeOfSurface">
+           </div>
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="located">Located:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="located" placeholder="Enter place located" name="located" ng-model="graffitiRemovalParams.located">
+           </div>
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="ssa">SSA:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="ssa" placeholder="Enter SSA" name="ssa" ng-model="graffitiRemovalParams.ssa">
+           </div>
+      </div>
+      </div>
+
+    </div>
+
+    <!-- potHoles -->
+    <div ng-show="selectedRequestType == requestTypes[5]">
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="currentActivity">Current Activity:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="currentActivity" placeholder="Enter current activity" name="currentActivity" ng-model="potHolesParams.currentActivity">
+           </div>
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="mostRecentAction">Most Recent Action:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="mostRecentAction" placeholder="Enter most recent action" name="mostRecentAction" ng-model="potHolesParams.mostRecentAction">
+           </div>
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="potHoles">Pot Holes Number:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="potHoles" placeholder="Enter pot holes number" name="potHoles" ng-model="potHolesParams.potHoles">
+           </div>
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="ssa">SSA:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="ssa" placeholder="Enter SSA" name="ssa" ng-model="potHolesParams.ssa">
+           </div>
+      </div>
+      </div>
+
+    </div>
+
+    <!-- rodentBaiting -->
+    <div ng-show="selectedRequestType == requestTypes[6]">
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="premisesBaited">Premises Baited:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="premisesBaited" placeholder="Enter premises baited" name="premisesBaited" ng-model="rodentBaitingParams.premisesBaited">
+           </div>
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="premisesWithGarbage">Premises with garbage:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="premisesWithGarbage" placeholder="Enter premises with garbage" name="premisesWithGarbage" ng-model="rodentBaitingParams.premisesWithGarbage">
+           </div>
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="premisesWithRats">Premises with rats:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="premisesWithRats" placeholder="Enter premises with rats" name="premisesWithRats" ng-model="rodentBaitingParams.premisesWithRats">
+           </div>
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="currentActivity">Current Activity:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="currentActivity" placeholder="Enter current activity" name="currentActivity" ng-model="rodentBaitingParams.currentActivity">
+           </div>
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="mostRecentAction">Most Recent Action:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="mostRecentAction" placeholder="Enter most recent action" name="mostRecentAction" ng-model="rodentBaitingParams.mostRecentAction">
+           </div>
+      </div>
+      </div>
+
+    </div>
+
+    <!-- sanitationCodeComplaints -->
+    <div ng-show="selectedRequestType == requestTypes[7]">
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="natureOfViolation">Nature of violation:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="natureOfViolation" placeholder="Enter nature of violation" name="natureOfViolation" 
+          ng-model="sanitationCodeComplaintsParams.natureOfViolation">
+           </div>
+      </div>
+      </div>
+
+    </div>
+
+    <!-- treeDebris -->
+    <div ng-show="selectedRequestType == requestTypes[9]">
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="location2">Tree debris location:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="location2" placeholder="Enter tree debris location" name="location2" ng-model="treeDebrisParams.location2">
+           </div>
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="currentActivity">Current Activity:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="currentActivity" placeholder="Enter current activity" name="currentActivity" ng-model="treeDebrisParams.currentActivity">
+           </div>
+      </div>
+      </div>
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="mostRecentAction">Most Recent Action:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="mostRecentAction" placeholder="Enter most recent action" name="mostRecentAction" ng-model="treeDebrisParams.mostRecentAction">
+           </div>
+      </div>
+      </div>
+
+    </div>
+
+    <!-- treeTrims -->
+    <div ng-show="selectedRequestType == requestTypes[10]">
+
+      <div class="row">
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="location2">Tree trims location:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="location2" placeholder="Enter tree trims location" name="location2" ng-model="treeTrimsParams.location2">
+           </div>
+      </div>
+      </div>
+
+    </div>
+    </br>
+
+    <div class="row">
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button class="btn btn-danger" ng-click="reportIncident()">Report incident</button>
+      </div>
+    </div>
+    </div>
+
+</div>
