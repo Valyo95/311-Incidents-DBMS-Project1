@@ -21,7 +21,7 @@ public class TreeTrimsService {
 	@Transactional
 	public TreeTrims create(String status, String streetAddress, int xCoordinate,
 			int yCoordinate, int ward, int policeDistrict, int communityArea, int latitude, int longitude,
-			String location, Date createdAt, Date completionDate) {
+			String location) {
 		Incident newIncident = new Incident();
 		newIncident.setType(TypeOfServiceRequest.TREE_TRIMS);
 		newIncident.setStatus(status);
@@ -34,8 +34,6 @@ public class TreeTrimsService {
 		newIncident.setLatitude(latitude);
 		newIncident.setLongitude(longitude);
 		newIncident.setLocation(location);
-		newIncident.setCreatedAt(createdAt);
-		newIncident.setCompletionDate(completionDate);
 		
 		TreeTrims newTreeTrims = new TreeTrims();
 		newTreeTrims.setIncident(newIncident);

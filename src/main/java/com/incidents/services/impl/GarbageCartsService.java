@@ -21,7 +21,7 @@ public class GarbageCartsService {
 	@Transactional
 	public GarbageCarts create(String status, String streetAddress, int xCoordinate,
 			int yCoordinate, int ward, int policeDistrict, int communityArea, int latitude, int longitude,
-			String location, Date createdAt, Date completionDate) {
+			String location) {
 		Incident newIncident = new Incident();
 		newIncident.setType(TypeOfServiceRequest.GARBAGE_CARTS);
 		newIncident.setStatus(status);
@@ -34,8 +34,6 @@ public class GarbageCartsService {
 		newIncident.setLatitude(latitude);
 		newIncident.setLongitude(longitude);
 		newIncident.setLocation(location);
-		newIncident.setCreatedAt(createdAt);
-		newIncident.setCompletionDate(completionDate);
 		
 		GarbageCarts newGarbageCarts = new GarbageCarts();
 		newGarbageCarts.setIncident(newIncident);

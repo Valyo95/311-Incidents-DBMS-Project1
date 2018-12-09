@@ -21,7 +21,7 @@ public class RodentBaitingService {
 	@Transactional
 	public RodentBaiting create(String status, String streetAddress, int xCoordinate,
 			int yCoordinate, int ward, int policeDistrict, int communityArea, int latitude, int longitude,
-			String location, Date createdAt, Date completionDate) {
+			String location) {
 		Incident newIncident = new Incident();
 		newIncident.setType(TypeOfServiceRequest.RODENT_BAITING);
 		newIncident.setStatus(status);
@@ -34,8 +34,6 @@ public class RodentBaitingService {
 		newIncident.setLatitude(latitude);
 		newIncident.setLongitude(longitude);
 		newIncident.setLocation(location);
-		newIncident.setCreatedAt(createdAt);
-		newIncident.setCompletionDate(completionDate);
 		
 		RodentBaiting newRodentBaiting = new RodentBaiting();
 		newRodentBaiting.setIncident(newIncident);

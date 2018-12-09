@@ -20,7 +20,7 @@ public class AbandonedVehiclesService {
 	@Transactional
 	public AbandonedVehicles create(String status, String streetAddress, int xCoordinate,
 			int yCoordinate, int ward, int policeDistrict, int communityArea, int latitude, int longitude,
-			String location, Date createdAt, Date completionDate) {
+			String location) {
 		Incident newIncident = new Incident();
 		newIncident.setType(TypeOfServiceRequest.ABANDONED_VEHICLES);
 		newIncident.setStatus(status);
@@ -33,8 +33,6 @@ public class AbandonedVehiclesService {
 		newIncident.setLatitude(latitude);
 		newIncident.setLongitude(longitude);
 		newIncident.setLocation(location);
-		newIncident.setCreatedAt(createdAt);
-		newIncident.setCompletionDate(completionDate);
 		
 		AbandonedVehicles newAbandonedVehicle = new AbandonedVehicles();
 		newAbandonedVehicle.setIncident(newIncident);

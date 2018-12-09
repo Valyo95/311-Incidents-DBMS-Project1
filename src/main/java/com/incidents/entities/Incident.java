@@ -60,7 +60,6 @@ public class Incident implements Serializable {
 
 	@Column(name = "COMPLETION_DATE", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
-	@LastModifiedDate
 	private Date completionDate;
 
 	public Incident() {

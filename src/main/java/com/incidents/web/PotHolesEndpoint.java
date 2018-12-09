@@ -30,7 +30,7 @@ public class PotHolesEndpoint {
 	  @RequestMapping(value = "/potHolesEndpoint/create", method = RequestMethod.POST, headers = "Accept=application/json")
 	  public PotHoles create(Principal principal, @RequestParam("status") String status, @RequestParam("streetAddress") String streetAddress, @RequestParam("xCoordinate") Integer xCoordinate,
 			  @RequestParam("yCoordinate") Integer yCoordinate, @RequestParam("ward") Integer ward, @RequestParam("policeDistrict") Integer policeDistrict, @RequestParam("communityArea") Integer communityArea, @RequestParam("latitude") Integer latitude, @RequestParam("longitude") Integer longitude,
-			  @RequestParam("location") String location, @RequestParam("createdAt") @DateTimeFormat(pattern="yyyy-MM-dd") Date createdAt, @RequestParam("completionDate") @DateTimeFormat(pattern="yyyy-MM-dd") Date completionDate) {
+			  @RequestParam("location") String location) {
 		  MyUser user;
 		  
 		    if (principal != null) {
@@ -43,7 +43,7 @@ public class PotHolesEndpoint {
 		        return null;
 		      }
 		    
-		    return service.create(status, streetAddress, xCoordinate, yCoordinate, ward, policeDistrict, communityArea, latitude, longitude, location, createdAt, completionDate);
+		    return service.create(status, streetAddress, xCoordinate, yCoordinate, ward, policeDistrict, communityArea, latitude, longitude, location);
 		    
 	  }
 	
