@@ -21,7 +21,8 @@ public class PotHolesService {
 	@Transactional
 	public PotHoles create(String status, String streetAddress, int xCoordinate,
 			int yCoordinate, int ward, int policeDistrict, int communityArea, int latitude, int longitude,
-			String location) {
+			String location, String currentActivity, String mostRecentAction, int potHoles,
+			String ssa) {
 		Incident newIncident = new Incident();
 		newIncident.setType(TypeOfServiceRequest.POT_HOLES_REPORTED);
 		newIncident.setStatus(status);
@@ -37,6 +38,10 @@ public class PotHolesService {
 		
 		PotHoles newPotHoles = new PotHoles();
 		newPotHoles.setIncident(newIncident);
+		newPotHoles.setCurrentActivity(currentActivity);
+		newPotHoles.setMostRecentAction(mostRecentAction);
+		newPotHoles.setPotHoles(potHoles);
+		newPotHoles.setSsa(ssa);
 		
 		dao.save(newPotHoles);
 		return newPotHoles;

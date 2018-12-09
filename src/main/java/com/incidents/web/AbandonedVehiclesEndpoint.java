@@ -30,7 +30,7 @@ public class AbandonedVehiclesEndpoint {
 	  @RequestMapping(value = "/abandonedVehiclesEndpoint/create", method = RequestMethod.POST, headers = "Accept=application/json")
 	  public AbandonedVehicles create(Principal principal, @RequestParam("status") String status, @RequestParam("streetAddress") String streetAddress, @RequestParam("xCoordinate") Integer xCoordinate,
 			  @RequestParam("yCoordinate") Integer yCoordinate, @RequestParam("ward") Integer ward, @RequestParam("policeDistrict") Integer policeDistrict, @RequestParam("communityArea") Integer communityArea, @RequestParam("latitude") Integer latitude, @RequestParam("longitude") Integer longitude,
-			  @RequestParam("location") String location) {
+			  @RequestParam("location") String location, @RequestParam("licensePlate") String licensePlate, @RequestParam("model") String model, @RequestParam("color") String color, @RequestParam("currentActivity") String currentActivity, @RequestParam("mostRecentAction") String mostRecentAction, @RequestParam("daysAbandoned") int daysAbandoned, @RequestParam("ssa") String ssa) {
 		  MyUser user;
 		  
 		    if (principal != null) {
@@ -43,7 +43,7 @@ public class AbandonedVehiclesEndpoint {
 		        return null;
 		      }
 		    
-		    return service.create(status, streetAddress, xCoordinate, yCoordinate, ward, policeDistrict, communityArea, latitude, longitude, location);
+		    return service.create(status, streetAddress, xCoordinate, yCoordinate, ward, policeDistrict, communityArea, latitude, longitude, location, licensePlate, model, color, currentActivity, mostRecentAction, daysAbandoned, ssa);
 		    
 	  }
 	

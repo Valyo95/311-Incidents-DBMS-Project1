@@ -20,7 +20,7 @@ public class AbandonedVehiclesService {
 	@Transactional
 	public AbandonedVehicles create(String status, String streetAddress, int xCoordinate,
 			int yCoordinate, int ward, int policeDistrict, int communityArea, int latitude, int longitude,
-			String location) {
+			String location, String licensePlate, String model, String color, String currentActivity, String mostRecentAction, int daysAbandoned, String ssa) {
 		Incident newIncident = new Incident();
 		newIncident.setType(TypeOfServiceRequest.ABANDONED_VEHICLES);
 		newIncident.setStatus(status);
@@ -36,6 +36,13 @@ public class AbandonedVehiclesService {
 		
 		AbandonedVehicles newAbandonedVehicle = new AbandonedVehicles();
 		newAbandonedVehicle.setIncident(newIncident);
+		newAbandonedVehicle.setLicensePlate(licensePlate);
+		newAbandonedVehicle.setModel(model);
+		newAbandonedVehicle.setColor(color);
+		newAbandonedVehicle.setCurrentActivity(currentActivity);
+		newAbandonedVehicle.setMostRecentAction(mostRecentAction);
+		newAbandonedVehicle.setDaysAbandoned(daysAbandoned);
+		newAbandonedVehicle.setSsa(ssa);
 		
 		dao.save(newAbandonedVehicle);
 		return newAbandonedVehicle;

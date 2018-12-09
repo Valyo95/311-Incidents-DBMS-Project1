@@ -21,7 +21,8 @@ public class GarbageCartsService {
 	@Transactional
 	public GarbageCarts create(String status, String streetAddress, int xCoordinate,
 			int yCoordinate, int ward, int policeDistrict, int communityArea, int latitude, int longitude,
-			String location) {
+			String location, int blackCartsDelivered, String currentActivity,
+		 String mostRecentAction, String ssa) {
 		Incident newIncident = new Incident();
 		newIncident.setType(TypeOfServiceRequest.GARBAGE_CARTS);
 		newIncident.setStatus(status);
@@ -37,6 +38,10 @@ public class GarbageCartsService {
 		
 		GarbageCarts newGarbageCarts = new GarbageCarts();
 		newGarbageCarts.setIncident(newIncident);
+		newGarbageCarts.setBlackCartsDelivered(blackCartsDelivered);
+		newGarbageCarts.setCurrentActivity(currentActivity);
+		newGarbageCarts.setMostRecentAction(mostRecentAction);
+		newGarbageCarts.setSsa(ssa);
 		
 		dao.save(newGarbageCarts);
 		return newGarbageCarts;
