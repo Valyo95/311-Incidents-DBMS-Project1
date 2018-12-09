@@ -19,12 +19,11 @@ public class SanitationCodeComplaintsService {
 	SanitationCodeComplaintsDAO dao;
 	
 	@Transactional
-	public SanitationCodeComplaints create(String srn, String status, String streetAddress, int xCoordinate,
+	public SanitationCodeComplaints create(String status, String streetAddress, int xCoordinate,
 			int yCoordinate, int ward, int policeDistrict, int communityArea, int latitude, int longitude,
 			String location, Date createdAt, Date completionDate) {
 		Incident newIncident = new Incident();
 		newIncident.setType(TypeOfServiceRequest.SANITATION_CODE_COMPLAINTS);
-		newIncident.setSrn(srn);
 		newIncident.setStatus(status);
 		newIncident.setStreetAddress(streetAddress);
 		newIncident.setxCoordinate(xCoordinate);

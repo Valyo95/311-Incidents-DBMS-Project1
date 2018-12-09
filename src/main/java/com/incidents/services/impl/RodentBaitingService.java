@@ -19,12 +19,11 @@ public class RodentBaitingService {
 	RodentBaitingDAO dao;
 	
 	@Transactional
-	public RodentBaiting create(String srn, String status, String streetAddress, int xCoordinate,
+	public RodentBaiting create(String status, String streetAddress, int xCoordinate,
 			int yCoordinate, int ward, int policeDistrict, int communityArea, int latitude, int longitude,
 			String location, Date createdAt, Date completionDate) {
 		Incident newIncident = new Incident();
 		newIncident.setType(TypeOfServiceRequest.RODENT_BAITING);
-		newIncident.setSrn(srn);
 		newIncident.setStatus(status);
 		newIncident.setStreetAddress(streetAddress);
 		newIncident.setxCoordinate(xCoordinate);

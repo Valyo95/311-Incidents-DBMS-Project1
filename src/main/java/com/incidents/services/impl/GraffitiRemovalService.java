@@ -19,12 +19,11 @@ public class GraffitiRemovalService {
 	GraffitiRemovalDAO dao;
 	
 	@Transactional
-	public GraffitiRemoval create(String srn, String status, String streetAddress, int xCoordinate,
+	public GraffitiRemoval create(String status, String streetAddress, int xCoordinate,
 			int yCoordinate, int ward, int policeDistrict, int communityArea, int latitude, int longitude,
 			String location, Date createdAt, Date completionDate) {
 		Incident newIncident = new Incident();
 		newIncident.setType(TypeOfServiceRequest.GRAFFITI_REMOVAL);
-		newIncident.setSrn(srn);
 		newIncident.setStatus(status);
 		newIncident.setStreetAddress(streetAddress);
 		newIncident.setxCoordinate(xCoordinate);

@@ -26,7 +26,7 @@ public class PotHolesEndpoint {
 	  private PotHolesService service;
 	  
 	  @RequestMapping(value = "/potHolesEndpoint/create", method = RequestMethod.POST, headers = "Accept=application/json")
-	  public PotHoles create(Principal principal, String srn, String status, String streetAddress, int xCoordinate,
+	  public PotHoles create(Principal principal, String status, String streetAddress, int xCoordinate,
 			int yCoordinate, int ward, int policeDistrict, int communityArea, int latitude, int longitude,
 			String location, Date createdAt, Date completionDate) {
 		  MyUser user;
@@ -41,7 +41,7 @@ public class PotHolesEndpoint {
 		        return null;
 		      }
 		    
-		    return service.create(srn, status, streetAddress, xCoordinate, yCoordinate, ward, policeDistrict, communityArea, latitude, longitude, location, createdAt, completionDate);
+		    return service.create(status, streetAddress, xCoordinate, yCoordinate, ward, policeDistrict, communityArea, latitude, longitude, location, createdAt, completionDate);
 		    
 	  }
 	

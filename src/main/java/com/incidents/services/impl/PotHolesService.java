@@ -19,12 +19,11 @@ public class PotHolesService {
 	PotHolesDAO dao;
 	
 	@Transactional
-	public PotHoles create(String srn, String status, String streetAddress, int xCoordinate,
+	public PotHoles create(String status, String streetAddress, int xCoordinate,
 			int yCoordinate, int ward, int policeDistrict, int communityArea, int latitude, int longitude,
 			String location, Date createdAt, Date completionDate) {
 		Incident newIncident = new Incident();
 		newIncident.setType(TypeOfServiceRequest.POT_HOLES_REPORTED);
-		newIncident.setSrn(srn);
 		newIncident.setStatus(status);
 		newIncident.setStreetAddress(streetAddress);
 		newIncident.setxCoordinate(xCoordinate);

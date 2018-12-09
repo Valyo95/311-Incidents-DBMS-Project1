@@ -26,7 +26,7 @@ public class AbandonedVehiclesEndpoint {
 	  private AbandonedVehiclesService service;
 	  
 	  @RequestMapping(value = "/abandonedVehiclesEndpoint/create", method = RequestMethod.POST, headers = "Accept=application/json")
-	  public AbandonedVehicles create(Principal principal, String srn, String status, String streetAddress, int AbandonedVehiclesCoordinate,
+	  public AbandonedVehicles create(Principal principal, String status, String streetAddress, int AbandonedVehiclesCoordinate,
 			int yCoordinate, int ward, int policeDistrict, int communityArea, int latitude, int longitude,
 			String location, Date createdAt, Date completionDate) {
 		  MyUser user;
@@ -41,7 +41,7 @@ public class AbandonedVehiclesEndpoint {
 		        return null;
 		      }
 		    
-		    return service.create(srn, status, streetAddress, AbandonedVehiclesCoordinate, yCoordinate, ward, policeDistrict, communityArea, latitude, longitude, location, createdAt, completionDate);
+		    return service.create(status, streetAddress, AbandonedVehiclesCoordinate, yCoordinate, ward, policeDistrict, communityArea, latitude, longitude, location, createdAt, completionDate);
 		    
 	  }
 	

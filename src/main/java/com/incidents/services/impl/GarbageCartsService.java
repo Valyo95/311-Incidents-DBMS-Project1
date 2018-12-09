@@ -19,12 +19,11 @@ public class GarbageCartsService {
 	GarbageCartsDAO dao;
 	
 	@Transactional
-	public GarbageCarts create(String srn, String status, String streetAddress, int xCoordinate,
+	public GarbageCarts create(String status, String streetAddress, int xCoordinate,
 			int yCoordinate, int ward, int policeDistrict, int communityArea, int latitude, int longitude,
 			String location, Date createdAt, Date completionDate) {
 		Incident newIncident = new Incident();
 		newIncident.setType(TypeOfServiceRequest.GARBAGE_CARTS);
-		newIncident.setSrn(srn);
 		newIncident.setStatus(status);
 		newIncident.setStreetAddress(streetAddress);
 		newIncident.setxCoordinate(xCoordinate);

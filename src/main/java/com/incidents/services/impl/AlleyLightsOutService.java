@@ -19,12 +19,11 @@ public class AlleyLightsOutService {
 	AlleyLightsOutDAO dao;
 	
 	@Transactional
-	public AlleyLightsOut create(String srn, String status, String streetAddress, int xCoordinate,
+	public AlleyLightsOut create(String status, String streetAddress, int xCoordinate,
 			int yCoordinate, int ward, int policeDistrict, int communityArea, int latitude, int longitude,
 			String location, Date createdAt, Date completionDate) {
 		Incident newIncident = new Incident();
 		newIncident.setType(TypeOfServiceRequest.ALLEY_LIGHTS_OUT);
-		newIncident.setSrn(srn);
 		newIncident.setStatus(status);
 		newIncident.setStreetAddress(streetAddress);
 		newIncident.setxCoordinate(xCoordinate);

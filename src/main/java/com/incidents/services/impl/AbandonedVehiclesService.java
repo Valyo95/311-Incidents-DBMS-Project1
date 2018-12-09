@@ -18,12 +18,11 @@ public class AbandonedVehiclesService {
 	AbandonedVehiclesDAO dao;
 	
 	@Transactional
-	public AbandonedVehicles create(String srn, String status, String streetAddress, int xCoordinate,
+	public AbandonedVehicles create(String status, String streetAddress, int xCoordinate,
 			int yCoordinate, int ward, int policeDistrict, int communityArea, int latitude, int longitude,
 			String location, Date createdAt, Date completionDate) {
 		Incident newIncident = new Incident();
 		newIncident.setType(TypeOfServiceRequest.ABANDONED_VEHICLES);
-		newIncident.setSrn(srn);
 		newIncident.setStatus(status);
 		newIncident.setStreetAddress(streetAddress);
 		newIncident.setxCoordinate(xCoordinate);
