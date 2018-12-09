@@ -4,8 +4,10 @@ import java.security.Principal;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.incidents.entities.GarbageCarts;
@@ -26,9 +28,9 @@ public class GarbageCartsEndpoint {
 	  private GarbageCartsService service;
 	  
 	  @RequestMapping(value = "/garbageCartsEndpoint/create", method = RequestMethod.POST, headers = "Accept=application/json")
-	  public GarbageCarts create(Principal principal, String status, String streetAddress, int xCoordinate,
-			int yCoordinate, int ward, int policeDistrict, int communityArea, int latitude, int longitude,
-			String location, Date createdAt, Date completionDate) {
+	  public GarbageCarts create(Principal principal, @RequestParam("status") String status, @RequestParam("streetAddress") String streetAddress, @RequestParam("xCoordinate") Integer xCoordinate,
+			  @RequestParam("yCoordinate") Integer yCoordinate, @RequestParam("ward") Integer ward, @RequestParam("policeDistrict") Integer policeDistrict, @RequestParam("communityArea") Integer communityArea, @RequestParam("latitude") Integer latitude, @RequestParam("longitude") Integer longitude,
+			  @RequestParam("location") String location, @RequestParam("createdAt") @DateTimeFormat(pattern="yyyy-MM-dd") Date createdAt, @RequestParam("completionDate") @DateTimeFormat(pattern="yyyy-MM-dd") Date completionDate) {
 		  MyUser user;
 		  
 		    if (principal != null) {

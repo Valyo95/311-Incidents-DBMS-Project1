@@ -13,6 +13,7 @@ var app = angular.module('app', [
 ])
 .config(['$routeProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $locationProvider, $httpProvider) {
 	  $routeProvider.when('/', {templateUrl: 'pages/incidents/main.html', controller: 'IncidentsController'});
+      $routeProvider.when('/', {templateUrl: 'pages/report/main.html', controller: 'ReportController'});
 	  $routeProvider.when('/register', {templateUrl: 'partial/register.html', controller: 'RegisterCtrl'});
 	  $routeProvider.when('/settings', {templateUrl: 'partial/settings.html', controller: 'SettingsController'});
 	  
