@@ -11,19 +11,24 @@ import com.incidents.entities.Incident;
 import com.incidents.enumerations.TypeOfServiceRequest;
 import com.incidents.repositories.AbandonedVehiclesDAO;
 import com.incidents.repositories.GarbageCartsDAO;
+import com.incidents.repositories.IncidentDAO;
 
 @Service("GarbageCarts")
 public class GarbageCartsService {
 
 	@Autowired
+	IncidentDAO incidentDao;
+	
+	@Autowired
 	GarbageCartsDAO dao;
 	
 	@Transactional
-	public GarbageCarts create(String status, String streetAddress, int xCoordinate,
-			int yCoordinate, int ward, int policeDistrict, int communityArea, int latitude, int longitude,
-			String location, int blackCartsDelivered, String currentActivity,
+	public GarbageCarts create(String status, String streetAddress, Integer xCoordinate,
+			Integer yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Integer latitude, Integer longitude,
+			String location, Integer blackCartsDelivered, String currentActivity,
 		 String mostRecentAction, String ssa) {
 		Incident newIncident = new Incident();
+		newIncident.setCreatedAt(new Date());
 		newIncident.setType(TypeOfServiceRequest.GARBAGE_CARTS);
 		newIncident.setStatus(status);
 		newIncident.setStreetAddress(streetAddress);
@@ -35,6 +40,7 @@ public class GarbageCartsService {
 		newIncident.setLatitude(latitude);
 		newIncident.setLongitude(longitude);
 		newIncident.setLocation(location);
+		incidentDao.save(newIncident);
 		
 		GarbageCarts newGarbageCarts = new GarbageCarts();
 		newGarbageCarts.setIncident(newIncident);

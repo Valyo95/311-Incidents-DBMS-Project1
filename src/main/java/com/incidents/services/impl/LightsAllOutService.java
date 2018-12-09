@@ -10,19 +10,24 @@ import com.incidents.entities.Incident;
 import com.incidents.entities.LightsAllOut;
 import com.incidents.enumerations.TypeOfServiceRequest;
 import com.incidents.repositories.AbandonedVehiclesDAO;
+import com.incidents.repositories.IncidentDAO;
 import com.incidents.repositories.LightsAllOutDAO;
 
 @Service("LightsAllOut")
 public class LightsAllOutService {
 
 	@Autowired
+	IncidentDAO incidentDao;
+	
+	@Autowired
 	LightsAllOutDAO dao;
 	
 	@Transactional
-	public LightsAllOut create(String status, String streetAddress, int xCoordinate,
-			int yCoordinate, int ward, int policeDistrict, int communityArea, int latitude, int longitude,
+	public LightsAllOut create(String status, String streetAddress, Integer xCoordinate,
+			Integer yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Integer latitude, Integer longitude,
 			String location) {
 		Incident newIncident = new Incident();
+		newIncident.setCreatedAt(new Date());
 		newIncident.setType(TypeOfServiceRequest.LIGHTS_ALL_OUT);
 		newIncident.setStatus(status);
 		newIncident.setStreetAddress(streetAddress);
@@ -34,6 +39,7 @@ public class LightsAllOutService {
 		newIncident.setLatitude(latitude);
 		newIncident.setLongitude(longitude);
 		newIncident.setLocation(location);
+		incidentDao.save(newIncident);
 		
 		LightsAllOut newLightsAllOut = new LightsAllOut();
 		newLightsAllOut.setIncident(newIncident);

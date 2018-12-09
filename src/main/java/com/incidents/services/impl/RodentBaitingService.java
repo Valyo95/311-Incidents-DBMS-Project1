@@ -10,19 +10,24 @@ import com.incidents.entities.Incident;
 import com.incidents.entities.RodentBaiting;
 import com.incidents.enumerations.TypeOfServiceRequest;
 import com.incidents.repositories.AbandonedVehiclesDAO;
+import com.incidents.repositories.IncidentDAO;
 import com.incidents.repositories.RodentBaitingDAO;
 
 @Service("RodentBaiting")
 public class RodentBaitingService {
 
 	@Autowired
+	IncidentDAO incidentDao;
+	
+	@Autowired
 	RodentBaitingDAO dao;
 	
 	@Transactional
-	public RodentBaiting create(String status, String streetAddress, int xCoordinate,
-			int yCoordinate, int ward, int policeDistrict, int communityArea, int latitude, int longitude,
-			String location, int premisesBaited, int premisesWithGarbage, int premisesWithRats, String currentActivity, String mostRecentAction) {
+	public RodentBaiting create(String status, String streetAddress, Integer xCoordinate,
+			Integer yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Integer latitude, Integer longitude,
+			String location, Integer premisesBaited, Integer premisesWithGarbage, Integer premisesWithRats, String currentActivity, String mostRecentAction) {
 		Incident newIncident = new Incident();
+		newIncident.setCreatedAt(new Date());
 		newIncident.setType(TypeOfServiceRequest.RODENT_BAITING);
 		newIncident.setStatus(status);
 		newIncident.setStreetAddress(streetAddress);
@@ -34,6 +39,7 @@ public class RodentBaitingService {
 		newIncident.setLatitude(latitude);
 		newIncident.setLongitude(longitude);
 		newIncident.setLocation(location);
+		incidentDao.save(newIncident);
 		
 		RodentBaiting newRodentBaiting = new RodentBaiting();
 		newRodentBaiting.setIncident(newIncident);

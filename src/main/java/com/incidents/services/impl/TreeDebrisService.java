@@ -10,19 +10,24 @@ import com.incidents.entities.Incident;
 import com.incidents.entities.TreeDebris;
 import com.incidents.enumerations.TypeOfServiceRequest;
 import com.incidents.repositories.AbandonedVehiclesDAO;
+import com.incidents.repositories.IncidentDAO;
 import com.incidents.repositories.TreeDebrisDAO;
 
 @Service("TreeDebris")
 public class TreeDebrisService {
 
 	@Autowired
+	IncidentDAO incidentDao;
+	
+	@Autowired
 	TreeDebrisDAO dao;
 	
 	@Transactional
-	public TreeDebris create(String status, String streetAddress, int xCoordinate,
-			int yCoordinate, int ward, int policeDistrict, int communityArea, int latitude, int longitude,
+	public TreeDebris create(String status, String streetAddress, Integer xCoordinate,
+			Integer yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Integer latitude, Integer longitude,
 			String location, String location2, String currentActivity, String mostRecentAction) {
 		Incident newIncident = new Incident();
+		newIncident.setCreatedAt(new Date());
 		newIncident.setType(TypeOfServiceRequest.TREE_DEBRIS);
 		newIncident.setStatus(status);
 		newIncident.setStreetAddress(streetAddress);
@@ -34,6 +39,7 @@ public class TreeDebrisService {
 		newIncident.setLatitude(latitude);
 		newIncident.setLongitude(longitude);
 		newIncident.setLocation(location);
+		incidentDao.save(newIncident);
 		
 		TreeDebris newTreeDebris = new TreeDebris();
 		newTreeDebris.setIncident(newIncident);

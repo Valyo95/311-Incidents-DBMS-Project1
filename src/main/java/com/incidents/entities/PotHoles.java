@@ -10,7 +10,7 @@ public class PotHoles implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	@OneToOne
 	@JoinColumn(name = "srn", referencedColumnName = "srn")
@@ -23,7 +23,7 @@ public class PotHoles implements Serializable {
 	private String mostRecentAction;
 
 	@Column(name = "POT_HOLS")
-	private int potHoles;
+	private Integer potHoles;
 
 	@Column(name = "SSA", length = 200)
 	private String ssa;
@@ -33,7 +33,7 @@ public class PotHoles implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PotHoles(int id, Incident incident, String currentActivity, String mostRecentAction, int potHoles,
+	public PotHoles(Integer id, Incident incident, String currentActivity, String mostRecentAction, Integer potHoles,
 			String ssa) {
 		super();
 		this.id = id;
@@ -44,11 +44,11 @@ public class PotHoles implements Serializable {
 		this.ssa = ssa;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -76,11 +76,11 @@ public class PotHoles implements Serializable {
 		this.mostRecentAction = mostRecentAction;
 	}
 
-	public int getPotHoles() {
+	public Integer getPotHoles() {
 		return potHoles;
 	}
 
-	public void setPotHoles(int potHoles) {
+	public void setPotHoles(Integer potHoles) {
 		this.potHoles = potHoles;
 	}
 

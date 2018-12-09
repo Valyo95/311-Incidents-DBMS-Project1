@@ -11,7 +11,7 @@ public class TreeTrims implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	@OneToOne
 	@JoinColumn(name = "srn", referencedColumnName = "srn")
@@ -25,18 +25,18 @@ public class TreeTrims implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TreeTrims(int id, Incident incident, String location) {
+	public TreeTrims(Integer id, Incident incident, String location) {
 		super();
 		this.id = id;
 		this.incident = incident;
 		this.location = location;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -16,7 +17,11 @@ public class Incident implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+        name = "UUID",
+    strategy = "org.hibernate.id.UUIDGenerator"
+    )
 	@Column(name = "srn", length = 200)
 	private String srn;
 
@@ -30,35 +35,34 @@ public class Incident implements Serializable {
 	private String streetAddress;
 
 	@Column(name = "X_COORDINATE")
-	private int xCoordinate;
+	private Integer xCoordinate;
 
 	@Column(name = "Y_COORDINATE")
-	private int yCoordinate;
+	private Integer yCoordinate;
 
 	@Column(name = "WARD")
-	private int ward;
+	private Integer ward;
 
 	@Column(name = "POLICE_DISTRICT")
-	private int policeDistrict;
+	private Integer policeDistrict;
 
 	@Column(name = "COMMUNITY_AREA")
-	private int communityArea;
+	private Integer communityArea;
 
 	@Column(name = "LATITUDE")
-	private int latitude;
+	private Integer latitude;
 
 	@Column(name = "LONGITUDE")
-	private int longitude;
+	private Integer longitude;
 
 	@Column(name = "LOCATION", length = 200)
 	private String location;
 
 	@Column(name = "CREATION_DATE", nullable = false, updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
-	@CreatedDate
 	private Date createdAt;
 
-	@Column(name = "COMPLETION_DATE", nullable = false)
+	@Column(name = "COMPLETION_DATE", nullable = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date completionDate;
 
@@ -66,8 +70,8 @@ public class Incident implements Serializable {
 		super();
 	}
 
-	public Incident(String srn, String status, TypeOfServiceRequest type, String streetAddress, int xCoordinate,
-			int yCoordinate, int ward, int policeDistrict, int communityArea, int latitude, int longitude,
+	public Incident(String srn, String status, TypeOfServiceRequest type, String streetAddress, Integer xCoordinate,
+			Integer yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Integer latitude, Integer longitude,
 			String location, Date createdAt, Date completionDate) {
 		super();
 		this.srn = srn;
@@ -118,59 +122,59 @@ public class Incident implements Serializable {
 		this.streetAddress = streetAddress;
 	}
 
-	public int getxCoordinate() {
+	public Integer getxCoordinate() {
 		return xCoordinate;
 	}
 
-	public void setxCoordinate(int xCoordinate) {
+	public void setxCoordinate(Integer xCoordinate) {
 		this.xCoordinate = xCoordinate;
 	}
 
-	public int getyCoordinate() {
+	public Integer getyCoordinate() {
 		return yCoordinate;
 	}
 
-	public void setyCoordinate(int yCoordinate) {
+	public void setyCoordinate(Integer yCoordinate) {
 		this.yCoordinate = yCoordinate;
 	}
 
-	public int getWard() {
+	public Integer getWard() {
 		return ward;
 	}
 
-	public void setWard(int ward) {
+	public void setWard(Integer ward) {
 		this.ward = ward;
 	}
 
-	public int getPoliceDistrict() {
+	public Integer getPoliceDistrict() {
 		return policeDistrict;
 	}
 
-	public void setPoliceDistrict(int policeDistrict) {
+	public void setPoliceDistrict(Integer policeDistrict) {
 		this.policeDistrict = policeDistrict;
 	}
 
-	public int getCommunityArea() {
+	public Integer getCommunityArea() {
 		return communityArea;
 	}
 
-	public void setCommunityArea(int communityArea) {
+	public void setCommunityArea(Integer communityArea) {
 		this.communityArea = communityArea;
 	}
 
-	public int getLatitude() {
+	public Integer getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(int latitude) {
+	public void setLatitude(Integer latitude) {
 		this.latitude = latitude;
 	}
 
-	public int getLongitude() {
+	public Integer getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(int longitude) {
+	public void setLongitude(Integer longitude) {
 		this.longitude = longitude;
 	}
 
@@ -204,7 +208,7 @@ public class Incident implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Complaint [srn=" + srn + ", status=" + status + ", type=" + type + ", streetAddress=" + streetAddress
+		return "Incident [srn=" + srn + ", status=" + status + ", type=" + type + ", streetAddress=" + streetAddress
 				+ ", xCoordinate=" + xCoordinate + ", yCoordinate=" + yCoordinate + ", ward=" + ward
 				+ ", policeDistrict=" + policeDistrict + ", communityArea=" + communityArea + ", latitude=" + latitude
 				+ ", longitude=" + longitude + ", location=" + location + ", createdAt=" + createdAt
