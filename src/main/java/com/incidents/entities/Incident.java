@@ -28,11 +28,15 @@ public class Incident implements Serializable {
 	@Column(name = "STATUS", length = 200)
 	private String status;
 
-	@Column(name = "SERVICE_REQUEST_TYPE", length = 200)
+	@Enumerated(EnumType.STRING)
+	@Column(name = "SERVICE_REQUEST_TYPE")
 	private TypeOfServiceRequest type;
 
 	@Column(name = "STREET_ADDRESS", length = 200)
 	private String streetAddress;
+	
+	@Column(name = "ZIP_CODE", length = 200)
+	private String zipCode;
 
 	@Column(name = "X_COORDINATE")
 	private Integer xCoordinate;
@@ -59,25 +63,27 @@ public class Incident implements Serializable {
 	private String location;
 
 	@Column(name = "CREATION_DATE", nullable = false, updatable = false)
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Date createdAt;
 
 	@Column(name = "COMPLETION_DATE", nullable = true)
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Date completionDate;
 
 	public Incident() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public Incident(String srn, String status, TypeOfServiceRequest type, String streetAddress, Integer xCoordinate,
-			Integer yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Integer latitude, Integer longitude,
-			String location, Date createdAt, Date completionDate) {
+	public Incident(String srn, String status, TypeOfServiceRequest type, String streetAddress, String zipCode,
+			Integer xCoordinate, Integer yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea,
+			Integer latitude, Integer longitude, String location, Date createdAt, Date completionDate) {
 		super();
 		this.srn = srn;
 		this.status = status;
 		this.type = type;
 		this.streetAddress = streetAddress;
+		this.zipCode = zipCode;
 		this.xCoordinate = xCoordinate;
 		this.yCoordinate = yCoordinate;
 		this.ward = ward;
@@ -120,6 +126,14 @@ public class Incident implements Serializable {
 
 	public void setStreetAddress(String streetAddress) {
 		this.streetAddress = streetAddress;
+	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
 	}
 
 	public Integer getxCoordinate() {
@@ -209,10 +223,9 @@ public class Incident implements Serializable {
 	@Override
 	public String toString() {
 		return "Incident [srn=" + srn + ", status=" + status + ", type=" + type + ", streetAddress=" + streetAddress
-				+ ", xCoordinate=" + xCoordinate + ", yCoordinate=" + yCoordinate + ", ward=" + ward
-				+ ", policeDistrict=" + policeDistrict + ", communityArea=" + communityArea + ", latitude=" + latitude
-				+ ", longitude=" + longitude + ", location=" + location + ", createdAt=" + createdAt
+				+ ", zipCode=" + zipCode + ", xCoordinate=" + xCoordinate + ", yCoordinate=" + yCoordinate + ", ward="
+				+ ward + ", policeDistrict=" + policeDistrict + ", communityArea=" + communityArea + ", latitude="
+				+ latitude + ", longitude=" + longitude + ", location=" + location + ", createdAt=" + createdAt
 				+ ", completionDate=" + completionDate + "]";
 	}
-
 }
