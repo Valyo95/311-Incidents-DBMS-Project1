@@ -23,7 +23,7 @@ public class TreeDebrisService {
 	TreeDebrisDAO dao;
 	
 	@Transactional
-	public TreeDebris create(String status, String streetAddress, Integer xCoordinate,
+	public TreeDebris create(String status, String streetAddress, String zipCode, Integer xCoordinate,
 			Integer yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Integer latitude, Integer longitude,
 			String location, String location2, String currentActivity, String mostRecentAction) {
 		Incident newIncident = new Incident();
@@ -31,6 +31,7 @@ public class TreeDebrisService {
 		newIncident.setType(TypeOfServiceRequest.TREE_DEBRIS);
 		newIncident.setStatus(status);
 		newIncident.setStreetAddress(streetAddress);
+		newIncident.setZipCode(zipCode);
 		newIncident.setxCoordinate(xCoordinate);
 		newIncident.setyCoordinate(yCoordinate);
 		newIncident.setWard(ward);

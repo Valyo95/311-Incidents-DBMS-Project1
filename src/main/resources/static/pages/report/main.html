@@ -37,6 +37,15 @@
 
     <div class="row">
     <div class="form-group">
+          <label class="control-label col-sm-2" for="zipCode">Zip Code:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="zipCode" placeholder="Enter Zip Code" name="zipCode" ng-model="defaultCreateParams.zipCode">
+           </div>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="form-group">
           <label class="control-label col-sm-2" for="xCoordinate">X Coordinate:</label>
           <div class="col-sm-6">          
           <input type="text" class="form-control" id="xCoordinate" placeholder="Enter X Coordinate" name="xCoordinate" ng-model="defaultCreateParams.xCoordinate">
@@ -249,7 +258,7 @@
     </div>
 
     <!-- potHoles -->
-    <div ng-show="selectedRequestType == requestTypes[5]">
+    <div ng-show="selectedRequestType == requestTypes[4]">
 
       <div class="row">
       <div class="form-group">
@@ -290,7 +299,7 @@
     </div>
 
     <!-- rodentBaiting -->
-    <div ng-show="selectedRequestType == requestTypes[6]">
+    <div ng-show="selectedRequestType == requestTypes[5]">
 
       <div class="row">
       <div class="form-group">
@@ -340,7 +349,7 @@
     </div>
 
     <!-- sanitationCodeComplaints -->
-    <div ng-show="selectedRequestType == requestTypes[7]">
+    <div ng-show="selectedRequestType == requestTypes[6]">
 
       <div class="row">
       <div class="form-group">
