@@ -2,9 +2,17 @@ package com.incidents.web;
 
 import java.security.Principal;
 import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +22,7 @@ import com.incidents.entities.AbandonedVehicles;
 import com.incidents.entities.MyUser;
 import com.incidents.entities.TreeTrims;
 import com.incidents.exceptions.EntityNotFoundException;
+import com.incidents.repositories.IncidentDAO;
 import com.incidents.services.Users;
 import com.incidents.services.impl.AbandonedVehiclesService;
 import com.incidents.services.impl.TreeTrimsService;
@@ -21,30 +30,55 @@ import com.incidents.services.impl.TreeTrimsService;
 @RestController
 public class AbandonedVehiclesEndpoint {
 
-	  @Autowired
-	  private Users userService;
-	  
-	  @Autowired
-	  private AbandonedVehiclesService service;
-	  
-	  @RequestMapping(value = "/abandonedVehiclesEndpoint/create", method = RequestMethod.POST, headers = "Accept=application/json")
-	  public AbandonedVehicles create(Principal principal, @RequestParam("status") String status, @RequestParam("streetAddress") String streetAddress, @RequestParam("zipCode") String zipCode, @RequestParam("xCoordinate") Integer xCoordinate,
-			  @RequestParam("yCoordinate") Integer yCoordinate, @RequestParam("ward") Integer ward, @RequestParam("policeDistrict") Integer policeDistrict, @RequestParam("communityArea") Integer communityArea, @RequestParam("latitude") Integer latitude, @RequestParam("longitude") Integer longitude,
-			  @RequestParam("location") String location, @RequestParam("licensePlate") String licensePlate, @RequestParam("model") String model, @RequestParam("color") String color, @RequestParam("currentActivity") String currentActivity, @RequestParam("mostRecentAction") String mostRecentAction, @RequestParam("daysAbandoned") Integer daysAbandoned, @RequestParam("ssa") String ssa) {
-		  MyUser user;
-		  
-		    if (principal != null) {
-		        try {
-		          user = userService.findByUsername(principal.getName());
-		        } catch (EntityNotFoundException e) {
-		          return null;
-		        }
-		      } else {
-		        return null;
-		      }
-		    
-		    return service.create(status, streetAddress, zipCode, xCoordinate, yCoordinate, ward, policeDistrict, communityArea, latitude, longitude, location, licensePlate, model, color, currentActivity, mostRecentAction, daysAbandoned, ssa);
-		    
+	@Autowired
+	private IncidentDAO inDao;
+
+	@Autowired
+	private Users userService;
+
+	@Autowired
+	private AbandonedVehiclesService service;
+
+	@RequestMapping(value = "/abandonedVehiclesEndpoint/create", method = RequestMethod.POST, headers = "Accept=application/json")
+	public AbandonedVehicles create(Principal principal, @RequestParam("status") String status,
+			@RequestParam("streetAddress") String streetAddress, @RequestParam("zipCode") String zipCode,
+			@RequestParam("xCoordinate") Integer xCoordinate, @RequestParam("yCoordinate") Integer yCoordinate,
+			@RequestParam("ward") Integer ward, @RequestParam("policeDistrict") Integer policeDistrict,
+			@RequestParam("communityArea") Integer communityArea, @RequestParam("latitude") Integer latitude,
+			@RequestParam("longitude") Integer longitude, @RequestParam("location") String location,
+			@RequestParam("licensePlate") String licensePlate, @RequestParam("model") String model,
+			@RequestParam("color") String color, @RequestParam("currentActivity") String currentActivity,
+			@RequestParam("mostRecentAction") String mostRecentAction,
+			@RequestParam("daysAbandoned") Integer daysAbandoned, @RequestParam("ssa") String ssa) {
+		MyUser user;
+
+		if (principal != null) {
+			try {
+				user = userService.findByUsername(principal.getName());
+			} catch (EntityNotFoundException e) {
+				return null;
+			}
+		} else {
+			return null;
+		}
+
+		return service.create(status, streetAddress, zipCode, xCoordinate, yCoordinate, ward, policeDistrict,
+				communityArea, latitude, longitude, location, licensePlate, model, color, currentActivity,
+				mostRecentAction, daysAbandoned, ssa);
+
+	}
+
+	@SuppressWarnings("deprecation")
+	@RequestMapping(value = "/first", method = RequestMethod.GET)
+	  public List<Pair<String, Integer>> logout(Principal principal) {		
+		System.out.println("akjsfhkashdfkl\n\n\n");
+		List<Pair<String, Integer>> s = inDao.first(new Date(2000, 12, 31), new Date(2020, 12, 31));
+		System.out.println(s.size());
+		for (Pair<String, Integer> pair : s) {
+			System.out.println(pair.getFirst());
+			System.out.println(pair.getSecond());
+		}
+	    return inDao.first(new Date(2000, 12, 31), new Date(2020, 12, 31));
 	  }
-	
+
 }
