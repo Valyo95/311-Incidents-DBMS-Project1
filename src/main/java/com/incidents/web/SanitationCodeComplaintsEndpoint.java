@@ -28,7 +28,7 @@ public class SanitationCodeComplaintsEndpoint {
 	  private SanitationCodeComplaintsService service;
 	  
 	  @RequestMapping(value = "/sanitationCodeComplaintsEndpoint/create", method = RequestMethod.POST, headers = "Accept=application/json")
-	  public SanitationCodeComplaints create(Principal principal, @RequestParam("status") String status, @RequestParam("streetAddress") String streetAddress, @RequestParam("xCoordinate") Integer xCoordinate,
+	  public SanitationCodeComplaints create(Principal principal, @RequestParam("status") String status, @RequestParam("streetAddress") String streetAddress, @RequestParam("zipCode") String zipCode, @RequestParam("xCoordinate") Integer xCoordinate,
 			  @RequestParam("yCoordinate") Integer yCoordinate, @RequestParam("ward") Integer ward, @RequestParam("policeDistrict") Integer policeDistrict, @RequestParam("communityArea") Integer communityArea, @RequestParam("latitude") Integer latitude, @RequestParam("longitude") Integer longitude,
 			  @RequestParam("location") String location, @RequestParam("natureOfViolation") String natureOfViolation) {
 		  MyUser user;
@@ -43,7 +43,7 @@ public class SanitationCodeComplaintsEndpoint {
 		        return null;
 		      }
 		    
-		    return service.create(status, streetAddress, xCoordinate, yCoordinate, ward, policeDistrict, communityArea, latitude, longitude, location, natureOfViolation);
+		    return service.create(status, streetAddress, zipCode , xCoordinate, yCoordinate, ward, policeDistrict, communityArea, latitude, longitude, location, natureOfViolation);
 		    
 	  }
 	

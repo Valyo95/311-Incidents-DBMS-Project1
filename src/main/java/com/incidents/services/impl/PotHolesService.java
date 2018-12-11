@@ -23,7 +23,7 @@ public class PotHolesService {
 	PotHolesDAO dao;
 	
 	@Transactional
-	public PotHoles create(String status, String streetAddress, Integer xCoordinate,
+	public PotHoles create(String status, String streetAddress, String zipCode, Integer xCoordinate,
 			Integer yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Integer latitude, Integer longitude,
 			String location, String currentActivity, String mostRecentAction, Integer potHoles,
 			String ssa) {
@@ -32,6 +32,7 @@ public class PotHolesService {
 		newIncident.setType(TypeOfServiceRequest.POT_HOLES_REPORTED);
 		newIncident.setStatus(status);
 		newIncident.setStreetAddress(streetAddress);
+		newIncident.setZipCode(zipCode);
 		newIncident.setxCoordinate(xCoordinate);
 		newIncident.setyCoordinate(yCoordinate);
 		newIncident.setWard(ward);

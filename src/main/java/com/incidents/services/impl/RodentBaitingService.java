@@ -23,7 +23,7 @@ public class RodentBaitingService {
 	RodentBaitingDAO dao;
 	
 	@Transactional
-	public RodentBaiting create(String status, String streetAddress, Integer xCoordinate,
+	public RodentBaiting create(String status, String streetAddress, String zipCode, Integer xCoordinate,
 			Integer yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Integer latitude, Integer longitude,
 			String location, Integer premisesBaited, Integer premisesWithGarbage, Integer premisesWithRats, String currentActivity, String mostRecentAction) {
 		Incident newIncident = new Incident();
@@ -31,6 +31,7 @@ public class RodentBaitingService {
 		newIncident.setType(TypeOfServiceRequest.RODENT_BAITING);
 		newIncident.setStatus(status);
 		newIncident.setStreetAddress(streetAddress);
+		newIncident.setZipCode(zipCode);
 		newIncident.setxCoordinate(xCoordinate);
 		newIncident.setyCoordinate(yCoordinate);
 		newIncident.setWard(ward);

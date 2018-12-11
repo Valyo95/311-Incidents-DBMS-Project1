@@ -23,7 +23,7 @@ public class SanitationCodeComplaintsService {
 	SanitationCodeComplaintsDAO dao;
 	
 	@Transactional
-	public SanitationCodeComplaints create(String status, String streetAddress, Integer xCoordinate,
+	public SanitationCodeComplaints create(String status, String streetAddress, String zipCode, Integer xCoordinate,
 			Integer yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Integer latitude, Integer longitude,
 			String location, String natureOfViolation) {
 		Incident newIncident = new Incident();
@@ -31,6 +31,7 @@ public class SanitationCodeComplaintsService {
 		newIncident.setType(TypeOfServiceRequest.SANITATION_CODE_COMPLAINTS);
 		newIncident.setStatus(status);
 		newIncident.setStreetAddress(streetAddress);
+		newIncident.setZipCode(zipCode);
 		newIncident.setxCoordinate(xCoordinate);
 		newIncident.setyCoordinate(yCoordinate);
 		newIncident.setWard(ward);

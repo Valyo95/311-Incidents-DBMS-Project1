@@ -23,7 +23,7 @@ public class GraffitiRemovalService {
 	GraffitiRemovalDAO dao;
 	
 	@Transactional
-	public GraffitiRemoval create(String status, String streetAddress, Integer xCoordinate,
+	public GraffitiRemoval create(String status, String streetAddress, String zipCode, Integer xCoordinate,
 			Integer yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Integer latitude, Integer longitude,
 			String location, String typeOfSurface, String located, String ssa) {
 		Incident newIncident = new Incident();
@@ -31,6 +31,7 @@ public class GraffitiRemovalService {
 		newIncident.setType(TypeOfServiceRequest.GRAFFITI_REMOVAL);
 		newIncident.setStatus(status);
 		newIncident.setStreetAddress(streetAddress);
+		newIncident.setZipCode(zipCode);
 		newIncident.setxCoordinate(xCoordinate);
 		newIncident.setyCoordinate(yCoordinate);
 		newIncident.setWard(ward);

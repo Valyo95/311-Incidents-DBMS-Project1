@@ -26,7 +26,7 @@ public class TreeTrimsEndpoint {
 	  private TreeTrimsService service;
 	  
 	  @RequestMapping(value = "/treeTrimsEndpoint/create", method = RequestMethod.POST, headers = "Accept=application/json")
-	  public TreeTrims create(Principal principal, @RequestParam("status") String status, @RequestParam("streetAddress") String streetAddress, @RequestParam("xCoordinate") Integer xCoordinate,
+	  public TreeTrims create(Principal principal, @RequestParam("status") String status, @RequestParam("streetAddress") String streetAddress, @RequestParam("zipCode") String zipCode, @RequestParam("xCoordinate") Integer xCoordinate,
 			  @RequestParam("yCoordinate") Integer yCoordinate, @RequestParam("ward") Integer ward, @RequestParam("policeDistrict") Integer policeDistrict, @RequestParam("communityArea") Integer communityArea, @RequestParam("latitude") Integer latitude, @RequestParam("longitude") Integer longitude,
 			  @RequestParam("location") String location, @RequestParam("location2") String location2) {
 		  MyUser user;
@@ -41,7 +41,7 @@ public class TreeTrimsEndpoint {
 		        return null;
 		      }
 		    
-		    return service.create(status, streetAddress, xCoordinate, yCoordinate, ward, policeDistrict, communityArea, latitude, longitude, location, location2);
+		    return service.create(status, streetAddress, zipCode , xCoordinate, yCoordinate, ward, policeDistrict, communityArea, latitude, longitude, location, location2);
 		    
 	  }
 	

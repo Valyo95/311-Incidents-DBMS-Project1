@@ -23,7 +23,7 @@ public class StreetLightOneOutService {
 	StreetLightOneOutDAO dao;
 	
 	@Transactional
-	public StreetLightOneOut create(String status, String streetAddress, Integer xCoordinate,
+	public StreetLightOneOut create(String status, String streetAddress, String zipCode, Integer xCoordinate,
 			Integer yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Integer latitude, Integer longitude,
 			String location) {
 		Incident newIncident = new Incident();
@@ -31,6 +31,7 @@ public class StreetLightOneOutService {
 		newIncident.setType(TypeOfServiceRequest.STREET_LIGHT_ONE_OUT);
 		newIncident.setStatus(status);
 		newIncident.setStreetAddress(streetAddress);
+		newIncident.setZipCode(zipCode);
 		newIncident.setxCoordinate(xCoordinate);
 		newIncident.setyCoordinate(yCoordinate);
 		newIncident.setWard(ward);

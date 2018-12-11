@@ -28,7 +28,7 @@ public class RodentBaitingEndpoint {
 	  private RodentBaitingService service;
 	  
 	  @RequestMapping(value = "/rodentBaitingEndpoint/create", method = RequestMethod.POST, headers = "Accept=application/json")
-	  public RodentBaiting create(Principal principal, @RequestParam("status") String status, @RequestParam("streetAddress") String streetAddress, @RequestParam("xCoordinate") Integer xCoordinate,
+	  public RodentBaiting create(Principal principal, @RequestParam("status") String status, @RequestParam("streetAddress") String streetAddress, @RequestParam("zipCode") String zipCode, @RequestParam("xCoordinate") Integer xCoordinate,
 			  @RequestParam("yCoordinate") Integer yCoordinate, @RequestParam("ward") Integer ward, @RequestParam("policeDistrict") Integer policeDistrict, @RequestParam("communityArea") Integer communityArea, @RequestParam("latitude") Integer latitude, @RequestParam("longitude") Integer longitude,
 			  @RequestParam("location") String location, @RequestParam("premisesBaited") Integer premisesBaited, @RequestParam("premisesWithGarbage") Integer premisesWithGarbage, @RequestParam("premisesWithRats") Integer premisesWithRats, @RequestParam("currentActivity") String currentActivity, @RequestParam("mostRecentAction") String mostRecentAction) {
 		  MyUser user;
@@ -43,7 +43,7 @@ public class RodentBaitingEndpoint {
 		        return null;
 		      }
 		    
-		    return service.create(status, streetAddress, xCoordinate, yCoordinate, ward, policeDistrict, communityArea, latitude, longitude, location, premisesBaited, premisesWithGarbage, premisesWithRats, currentActivity, mostRecentAction);
+		    return service.create(status, streetAddress, zipCode , xCoordinate, yCoordinate, ward, policeDistrict, communityArea, latitude, longitude, location, premisesBaited, premisesWithGarbage, premisesWithRats, currentActivity, mostRecentAction);
 		    
 	  }
 	

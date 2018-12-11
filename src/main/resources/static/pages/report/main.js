@@ -8,6 +8,7 @@ appControllers.controller("ReportController", function($scope, $http, $location,
 	$scope.defaultCreateParams = {
 		status : "",
 		streetAddress : "",
+		zipCode : "",
 		xCoordinate : "",
 		yCoordinate : "",
 		ward : "",
@@ -48,10 +49,6 @@ appControllers.controller("ReportController", function($scope, $http, $location,
 		ssa : ""
 	};
 
-	$scope.lightsAllOutEndpoint = "/lightsAllOutEndpoint";
-	$scope.lightsAllOutParams = {
-	};
-
 	$scope.potHolesEndpoint = "/potHolesEndpoint";
 	$scope.potHolesParams = {
 		currentActivity : "",
@@ -72,6 +69,10 @@ appControllers.controller("ReportController", function($scope, $http, $location,
 	$scope.sanitationCodeComplaintsEndpoint = "/sanitationCodeComplaintsEndpoint";
 	$scope.sanitationCodeComplaintsParams = {
 		natureOfViolation : ""
+	};
+
+	$scope.lightsAllOutEndpoint = "/lightsAllOutEndpoint";
+	$scope.lightsAllOutParams = {
 	};
 
 	$scope.streetLightOneOutEndpoint = "/streetLightOneOutEndpoint";
@@ -113,54 +114,72 @@ appControllers.controller("ReportController", function($scope, $http, $location,
 		switch ($scope.selectedRequestType) {
 			case ($scope.requestTypes[0]):
 				$scope.endpointPath = $scope.abandonedVehiclesEndpoint;
-				$scope.incidentParams = $.extend({}, $scope.defaultCreateParams, $scope.abandonedVehiclesParams);
 				break;
 			case ($scope.requestTypes[1]):
 				$scope.endpointPath = $scope.alleyLightsOutEndpoint;
-				$scope.incidentParams = $.extend({}, $scope.defaultCreateParams, $scope.alleyLightsOutParams);
 				break;
 			case ($scope.requestTypes[2]):
 				$scope.endpointPath = $scope.garbageCartsEndpoint;
-				$scope.incidentParams = $.extend({}, $scope.defaultCreateParams, $scope.garbageCartsParams);
 				break;
 			case ($scope.requestTypes[3]):
 				$scope.endpointPath = $scope.graffitiRemovalEndpoint;
-				$scope.incidentParams = $.extend({}, $scope.defaultCreateParams, $scope.graffitiRemovalParams);
 				break;
 			case ($scope.requestTypes[4]):
 				$scope.endpointPath = $scope.potHolesEndpoint;
-				$scope.incidentParams = $.extend({}, $scope.defaultCreateParams, $scope.potHolesParams);
 				break;
 			case ($scope.requestTypes[5]):
 				$scope.endpointPath = $scope.rodentBaitingEndpoint;
-				$scope.incidentParams = $.extend({}, $scope.defaultCreateParams, $scope.rodentBaitingParams);
 				break;
 			case ($scope.requestTypes[6]):
 				$scope.endpointPath = $scope.sanitationCodeComplaintsEndpoint;
-				$scope.incidentParams = $.extend({}, $scope.defaultCreateParams, $scope.sanitationCodeComplaintsParams);
 				break;
 			case ($scope.requestTypes[7]):
 				$scope.endpointPath = $scope.lightsAllOutEndpoint;
-				$scope.incidentParams = $.extend({}, $scope.defaultCreateParams, $scope.lightsAllOutParams);
 				break;
 			case ($scope.requestTypes[8]):
 				$scope.endpointPath = $scope.streetLightOneOutEndpoint;
-				$scope.incidentParams = $.extend({}, $scope.defaultCreateParams, $scope.streetLightOneOutParams);
 				break;
 			case ($scope.requestTypes[9]):
 				$scope.endpointPath = $scope.treeDebrisEndpoint;
-				$scope.incidentParams = $.extend({}, $scope.defaultCreateParams, $scope.treeDebrisParams);
 				break;
 			case ($scope.requestTypes[10]):
 				$scope.endpointPath = $scope.treeTrimsEndpoint;
-				$scope.incidentParams = $.extend({}, $scope.defaultCreateParams, $scope.treeTrimsParams);
 				break;
+		}
+	}
+
+	$scope.getIncidentParams = function() {
+
+		switch ($scope.selectedRequestType) {
+			case ($scope.requestTypes[0]):
+				return $.extend({}, $scope.defaultCreateParams, $scope.abandonedVehiclesParams);
+			case ($scope.requestTypes[1]):
+				return $.extend({}, $scope.defaultCreateParams, $scope.alleyLightsOutParams);
+			case ($scope.requestTypes[2]):
+				return $.extend({}, $scope.defaultCreateParams, $scope.garbageCartsParams);
+			case ($scope.requestTypes[3]):
+				return $.extend({}, $scope.defaultCreateParams, $scope.graffitiRemovalParams);
+			case ($scope.requestTypes[4]):
+				return $.extend({}, $scope.defaultCreateParams, $scope.potHolesParams);
+			case ($scope.requestTypes[5]):
+				return $.extend({}, $scope.defaultCreateParams, $scope.rodentBaitingParams);
+			case ($scope.requestTypes[6]):
+				return $.extend({}, $scope.defaultCreateParams, $scope.sanitationCodeComplaintsParams);
+			case ($scope.requestTypes[7]):
+				return $.extend({}, $scope.defaultCreateParams, $scope.lightsAllOutParams);
+			case ($scope.requestTypes[8]):
+				return $.extend({}, $scope.defaultCreateParams, $scope.streetLightOneOutParams);
+			case ($scope.requestTypes[9]):
+				return $.extend({}, $scope.defaultCreateParams, $scope.treeDebrisParams);
+			case ($scope.requestTypes[10]):
+				return $.extend({}, $scope.defaultCreateParams, $scope.treeTrimsParams);
 		}
 	}
 
 	$scope.resetAllParams = function() {
 		$scope.defaultCreateParams.status = "";
 		$scope.defaultCreateParams.streetAddress = "";
+		$scope.defaultCreateParams.zipCode = "";
 		$scope.defaultCreateParams.xCoordinate = "";
 		$scope.defaultCreateParams.yCoordinate = "";
 		$scope.defaultCreateParams.ward = "";
@@ -217,7 +236,7 @@ appControllers.controller("ReportController", function($scope, $http, $location,
 		$http({
 			method : "POST",
 			url : $scope.endpointPath + $scope.createPath,
-			params : $scope.incidentParams,
+			params : $scope.getIncidentParams(),
       headers : {
           'Content-Type' : 'application/json'
       }

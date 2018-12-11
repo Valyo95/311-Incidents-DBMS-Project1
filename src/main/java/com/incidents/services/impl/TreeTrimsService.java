@@ -23,7 +23,7 @@ public class TreeTrimsService {
 	TreeTrimsDAO dao;
 	
 	@Transactional
-	public TreeTrims create(String status, String streetAddress, Integer xCoordinate,
+	public TreeTrims create(String status, String streetAddress, String zipCode, Integer xCoordinate,
 			Integer yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Integer latitude, Integer longitude,
 			String location, String location2) {
 		Incident newIncident = new Incident();
@@ -31,6 +31,7 @@ public class TreeTrimsService {
 		newIncident.setType(TypeOfServiceRequest.TREE_TRIMS);
 		newIncident.setStatus(status);
 		newIncident.setStreetAddress(streetAddress);
+		newIncident.setZipCode(zipCode);
 		newIncident.setxCoordinate(xCoordinate);
 		newIncident.setyCoordinate(yCoordinate);
 		newIncident.setWard(ward);
