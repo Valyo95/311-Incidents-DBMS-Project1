@@ -14,7 +14,7 @@ public class StreetLightOneOut implements Serializable {
 	private Integer id;
 
 	@OneToOne
-	@JoinColumn(name = "id", referencedColumnName = "id")
+	@JoinColumn(name = "incident_id", referencedColumnName = "id")
 	private Incident incident;
 
 	public StreetLightOneOut() {

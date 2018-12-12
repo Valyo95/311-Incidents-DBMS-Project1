@@ -13,7 +13,7 @@ public class PotHoles implements Serializable {
 	private Integer id;
 
 	@OneToOne
-	@JoinColumn(name = "id", referencedColumnName = "id")
+	@JoinColumn(name = "incident_id", referencedColumnName = "id")
 	private Incident incident;
 
 	@Column(name = "CURRENT_ACTIVITY", length = 200)
