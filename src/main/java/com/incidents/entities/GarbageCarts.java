@@ -14,7 +14,7 @@ public class GarbageCarts implements Serializable{
 	private Integer id;
 	
 	@OneToOne
-	@JoinColumn(name = "srn", referencedColumnName="srn")
+	@JoinColumn(name = "id", referencedColumnName = "id")
     private Incident incident;
 	
 

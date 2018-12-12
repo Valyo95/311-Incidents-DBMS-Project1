@@ -14,7 +14,7 @@ public class TreeDebris implements Serializable {
 	private Integer id;
 
 	@OneToOne
-	@JoinColumn(name = "srn", referencedColumnName = "srn")
+	@JoinColumn(name = "id", referencedColumnName = "id")
 	private Incident incident;
 
 	@Column(name = "LOCATION", length = 200)

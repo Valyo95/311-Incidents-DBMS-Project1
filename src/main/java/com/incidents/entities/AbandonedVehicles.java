@@ -14,7 +14,7 @@ public class AbandonedVehicles implements Serializable {
 	private Integer id;
 
 	@OneToOne
-	@JoinColumn(name = "srn", referencedColumnName = "srn")
+	@JoinColumn(name = "id", referencedColumnName = "id")
 	private Incident incident;
 
 	@Column(name = "LICENSE_PLATE", length = 400)
