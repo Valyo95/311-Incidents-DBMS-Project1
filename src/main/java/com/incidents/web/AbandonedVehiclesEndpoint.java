@@ -57,18 +57,4 @@ public class AbandonedVehiclesEndpoint {
 		    
 		    return service.create(status, streetAddress, zipCode, xCoordinate, yCoordinate, ward, policeDistrict, communityArea, latitude, longitude, location, licensePlate, model, color, currentActivity, mostRecentAction, daysAbandoned, ssa);
 	  }
-		    
-	  @SuppressWarnings("deprecation")
-	  @RequestMapping(value = "/first", method = RequestMethod.GET)
-	    public List<Pair<String, Integer>> logout(Principal principal) {		
-		  System.out.println("akjsfhkashdfkl\n\n\n");
-	  	  List<Pair<String, Integer>> s = inDao.first(new Date(2000, 12, 31), new Date(2020, 12, 31));
-		  System.out.println(s.size());
-		  for (Pair<String, Integer> pair : s) {
-			System.out.println(pair.getFirst());
-			System.out.println(pair.getSecond());
-		  }
-	      return inDao.first(new Date(2000, 12, 31), new Date(2020, 12, 31));
-	    }
-
 }
