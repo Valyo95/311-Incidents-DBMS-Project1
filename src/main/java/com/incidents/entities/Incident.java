@@ -6,28 +6,16 @@ import java.util.Date;
 import javax.persistence.*;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-
 import com.incidents.enumerations.TypeOfServiceRequest;
-import com.incidents.util.Constants;
-@NamedNativeQueries({
-    @NamedNativeQuery(
-        name = Constants.TOTAL_REQUESTS_PER_TYPE,
-        query = "select * from totalrequestspertype(?1, ?2)"
-    )
-})
+
 @Entity
 @Table(name = "INCIDENT")
 public class Incident implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-        name = "UUID",
-    strategy = "org.hibernate.id.UUIDGenerator"
-    )
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 	@Column(name = "srn", length = 200)
 	private String srn;
 
@@ -40,7 +28,7 @@ public class Incident implements Serializable {
 
 	@Column(name = "STREET_ADDRESS", length = 200)
 	private String streetAddress;
-	
+
 	@Column(name = "ZIP_CODE", length = 200)
 	private String zipCode;
 
