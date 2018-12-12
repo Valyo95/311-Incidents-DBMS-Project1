@@ -23,8 +23,8 @@ public class GarbageCartsService {
 	GarbageCartsDAO dao;
 	
 	@Transactional
-	public GarbageCarts create(String status, String streetAddress, String zipCode, Integer xCoordinate,
-			Integer yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Integer latitude, Integer longitude,
+	public GarbageCarts create(String status, String streetAddress, String zipCode, Double xCoordinate,
+			Double yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Double latitude, Double longitude,
 			String location, Integer blackCartsDelivered, String currentActivity,
 		 String mostRecentAction, String ssa) {
 		Incident newIncident = new Incident();

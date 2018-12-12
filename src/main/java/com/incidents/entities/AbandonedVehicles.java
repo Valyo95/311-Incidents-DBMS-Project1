@@ -33,7 +33,7 @@ public class AbandonedVehicles implements Serializable {
 	private String mostRecentAction;
 
 	@Column(name = "DAYS_ABANDONED")
-	private Integer daysAbandoned;
+	private Double daysAbandoned;
 
 	@Column(name = "SSA", length = 200)
 	private String ssa;
@@ -44,7 +44,7 @@ public class AbandonedVehicles implements Serializable {
 	}
 
 	public AbandonedVehicles(Incident incident, String licensePlate, String model, String color,
-			String currentActivity, String mostRecentAction, Integer daysAbandoned, String ssa) {
+			String currentActivity, String mostRecentAction, Double daysAbandoned, String ssa) {
 		super();
 		this.incident = incident;
 		this.licensePlate = licensePlate;
@@ -112,11 +112,11 @@ public class AbandonedVehicles implements Serializable {
 		this.mostRecentAction = mostRecentAction;
 	}
 
-	public Integer getDaysAbandoned() {
+	public Double getDaysAbandoned() {
 		return daysAbandoned;
 	}
 
-	public void setDaysAbandoned(Integer daysAbandoned) {
+	public void setDaysAbandoned(Double daysAbandoned) {
 		this.daysAbandoned = daysAbandoned;
 	}
 

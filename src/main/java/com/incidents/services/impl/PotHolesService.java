@@ -23,8 +23,8 @@ public class PotHolesService {
 	PotHolesDAO dao;
 	
 	@Transactional
-	public PotHoles create(String status, String streetAddress, String zipCode, Integer xCoordinate,
-			Integer yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Integer latitude, Integer longitude,
+	public PotHoles create(String status, String streetAddress, String zipCode, Double xCoordinate,
+			Double yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Double latitude, Double longitude,
 			String location, String currentActivity, String mostRecentAction, Integer potHoles,
 			String ssa) {
 		Incident newIncident = new Incident();

@@ -22,9 +22,9 @@ public class AbandonedVehiclesService {
 	AbandonedVehiclesDAO dao;
 	
 	@Transactional
-	public AbandonedVehicles create(String status, String streetAddress, String zipCode, Integer xCoordinate,
-			Integer yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Integer latitude, Integer longitude,
-			String location, String licensePlate, String model, String color, String currentActivity, String mostRecentAction, Integer daysAbandoned, String ssa) {
+	public AbandonedVehicles create(String status, String streetAddress, String zipCode, Double xCoordinate,
+			Double yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Double latitude, Double longitude,
+			String location, String licensePlate, String model, String color, String currentActivity, String mostRecentAction, Double daysAbandoned, String ssa) {
 		Incident newIncident = new Incident();
 		newIncident.setCreatedAt(new Date());
 		newIncident.setType(TypeOfServiceRequest.ABANDONED_VEHICLES);

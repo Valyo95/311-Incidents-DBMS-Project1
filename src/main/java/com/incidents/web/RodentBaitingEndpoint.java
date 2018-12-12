@@ -28,8 +28,8 @@ public class RodentBaitingEndpoint {
 	  private RodentBaitingService service;
 	  
 	  @RequestMapping(value = "/rodentBaitingEndpoint/create", method = RequestMethod.POST, headers = "Accept=application/json")
-	  public RodentBaiting create(Principal principal, @RequestParam("status") String status, @RequestParam("streetAddress") String streetAddress, @RequestParam("zipCode") String zipCode, @RequestParam("xCoordinate") Integer xCoordinate,
-			  @RequestParam("yCoordinate") Integer yCoordinate, @RequestParam("ward") Integer ward, @RequestParam("policeDistrict") Integer policeDistrict, @RequestParam("communityArea") Integer communityArea, @RequestParam("latitude") Integer latitude, @RequestParam("longitude") Integer longitude,
+	  public RodentBaiting create(Principal principal, @RequestParam("status") String status, @RequestParam("streetAddress") String streetAddress, @RequestParam("zipCode") String zipCode, @RequestParam("xCoordinate") Double xCoordinate,
+			  @RequestParam("yCoordinate") Double yCoordinate, @RequestParam("ward") Integer ward, @RequestParam("policeDistrict") Integer policeDistrict, @RequestParam("communityArea") Integer communityArea, @RequestParam("latitude") Double latitude, @RequestParam("longitude") Double longitude,
 			  @RequestParam("location") String location, @RequestParam("premisesBaited") Integer premisesBaited, @RequestParam("premisesWithGarbage") Integer premisesWithGarbage, @RequestParam("premisesWithRats") Integer premisesWithRats, @RequestParam("currentActivity") String currentActivity, @RequestParam("mostRecentAction") String mostRecentAction) {
 		  MyUser user;
 		  

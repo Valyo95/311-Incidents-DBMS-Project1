@@ -28,8 +28,8 @@ public class GraffitiRemovalEndpoint {
 	  private GraffitiRemovalService service;
 	  
 	  @RequestMapping(value = "/graffitiRemovalEndpoint/create", method = RequestMethod.POST, headers = "Accept=application/json")
-	  public GraffitiRemoval create(Principal principal, @RequestParam("status") String status, @RequestParam("streetAddress") String streetAddress, @RequestParam("zipCode") String zipCode, @RequestParam("xCoordinate") Integer xCoordinate,
-			  @RequestParam("yCoordinate") Integer yCoordinate, @RequestParam("ward") Integer ward, @RequestParam("policeDistrict") Integer policeDistrict, @RequestParam("communityArea") Integer communityArea, @RequestParam("latitude") Integer latitude, @RequestParam("longitude") Integer longitude,
+	  public GraffitiRemoval create(Principal principal, @RequestParam("status") String status, @RequestParam("streetAddress") String streetAddress, @RequestParam("zipCode") String zipCode, @RequestParam("xCoordinate") Double xCoordinate,
+			  @RequestParam("yCoordinate") Double yCoordinate, @RequestParam("ward") Integer ward, @RequestParam("policeDistrict") Integer policeDistrict, @RequestParam("communityArea") Integer communityArea, @RequestParam("latitude") Double latitude, @RequestParam("longitude") Double longitude,
 			  @RequestParam("location") String location, @RequestParam("typeOfSurface") String typeOfSurface, @RequestParam("located") String located, @RequestParam("ssa") String ssa) {
 		  MyUser user;
 		  

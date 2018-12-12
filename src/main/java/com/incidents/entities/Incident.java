@@ -39,10 +39,10 @@ public class Incident implements Serializable {
 	private String zipCode;
 
 	@Column(name = "X_COORDINATE")
-	private Integer xCoordinate;
+	private Double xCoordinate;
 
 	@Column(name = "Y_COORDINATE")
-	private Integer yCoordinate;
+	private Double yCoordinate;
 
 	@Column(name = "WARD")
 	private Integer ward;
@@ -54,10 +54,10 @@ public class Incident implements Serializable {
 	private Integer communityArea;
 
 	@Column(name = "LATITUDE")
-	private Integer latitude;
+	private Double latitude;
 
 	@Column(name = "LONGITUDE")
-	private Integer longitude;
+	private Double longitude;
 
 	@Column(name = "LOCATION", length = 200)
 	private String location;
@@ -76,8 +76,8 @@ public class Incident implements Serializable {
 	}
 
 	public Incident(String srn, String status, TypeOfServiceRequest type, String streetAddress, String zipCode,
-			Integer xCoordinate, Integer yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea,
-			Integer latitude, Integer longitude, String location, Date createdAt, Date completionDate) {
+			Double xCoordinate, Double yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea,
+			Double latitude, Double longitude, String location, Date createdAt, Date completionDate) {
 		super();
 		this.srn = srn;
 		this.status = status;
@@ -136,19 +136,19 @@ public class Incident implements Serializable {
 		this.zipCode = zipCode;
 	}
 
-	public Integer getxCoordinate() {
+	public Double getxCoordinate() {
 		return xCoordinate;
 	}
 
-	public void setxCoordinate(Integer xCoordinate) {
+	public void setxCoordinate(Double xCoordinate) {
 		this.xCoordinate = xCoordinate;
 	}
 
-	public Integer getyCoordinate() {
+	public Double getyCoordinate() {
 		return yCoordinate;
 	}
 
-	public void setyCoordinate(Integer yCoordinate) {
+	public void setyCoordinate(Double yCoordinate) {
 		this.yCoordinate = yCoordinate;
 	}
 
@@ -176,19 +176,19 @@ public class Incident implements Serializable {
 		this.communityArea = communityArea;
 	}
 
-	public Integer getLatitude() {
+	public Double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(Integer latitude) {
+	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
 
-	public Integer getLongitude() {
+	public Double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(Integer longitude) {
+	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
 

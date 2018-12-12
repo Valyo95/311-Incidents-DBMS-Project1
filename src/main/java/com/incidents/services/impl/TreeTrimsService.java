@@ -23,8 +23,8 @@ public class TreeTrimsService {
 	TreeTrimsDAO dao;
 	
 	@Transactional
-	public TreeTrims create(String status, String streetAddress, String zipCode, Integer xCoordinate,
-			Integer yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Integer latitude, Integer longitude,
+	public TreeTrims create(String status, String streetAddress, String zipCode, Double xCoordinate,
+			Double yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Double latitude, Double longitude,
 			String location, String location2) {
 		Incident newIncident = new Incident();
 		newIncident.setCreatedAt(new Date());

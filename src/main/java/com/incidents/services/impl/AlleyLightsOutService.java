@@ -23,8 +23,8 @@ public class AlleyLightsOutService {
 	AlleyLightsOutDAO dao;
 	
 	@Transactional
-	public AlleyLightsOut create(String status, String streetAddress, String zipCode, Integer xCoordinate,
-			Integer yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Integer latitude, Integer longitude,
+	public AlleyLightsOut create(String status, String streetAddress, String zipCode, Double xCoordinate,
+			Double yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Double latitude, Double longitude,
 			String location) {
 		Incident newIncident = new Incident();
 		newIncident.setCreatedAt(new Date());
