@@ -11,7 +11,7 @@ import com.incidents.entities.Incident;
 import com.incidents.enumerations.TypeOfServiceRequest;
 import com.incidents.repositories.AbandonedVehiclesDAO;
 import com.incidents.repositories.IncidentDAO;
-import com.tc.util.UUID;
+import java.util.UUID;
 
 @Service("AbandonedVehicles")
 public class AbandonedVehiclesService {
@@ -40,6 +40,7 @@ public class AbandonedVehiclesService {
 		newIncident.setLatitude(latitude);
 		newIncident.setLongitude(longitude);
 		newIncident.setLocation(location);
+		newIncident.setSrn(UUID.randomUUID().toString());
 		incidentDao.save(newIncident);
 		
 		AbandonedVehicles newAbandonedVehicle = new AbandonedVehicles();

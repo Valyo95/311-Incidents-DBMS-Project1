@@ -12,7 +12,7 @@ import com.incidents.enumerations.TypeOfServiceRequest;
 import com.incidents.repositories.AbandonedVehiclesDAO;
 import com.incidents.repositories.GraffitiRemovalDAO;
 import com.incidents.repositories.IncidentDAO;
-import com.tc.util.UUID;
+import java.util.UUID;
 
 @Service("GraffitiRemoval")
 public class GraffitiRemovalService {
@@ -41,6 +41,7 @@ public class GraffitiRemovalService {
 		newIncident.setLatitude(latitude);
 		newIncident.setLongitude(longitude);
 		newIncident.setLocation(location);
+		newIncident.setSrn(UUID.randomUUID().toString());
 		incidentDao.save(newIncident);
 		
 		

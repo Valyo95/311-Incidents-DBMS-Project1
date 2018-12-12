@@ -12,7 +12,7 @@ import com.incidents.enumerations.TypeOfServiceRequest;
 import com.incidents.repositories.AbandonedVehiclesDAO;
 import com.incidents.repositories.IncidentDAO;
 import com.incidents.repositories.SanitationCodeComplaintsDAO;
-import com.tc.util.UUID;
+import java.util.UUID;
 
 @Service("SanitationCodeComplaints")
 public class SanitationCodeComplaintsService {
@@ -41,6 +41,7 @@ public class SanitationCodeComplaintsService {
 		newIncident.setLatitude(latitude);
 		newIncident.setLongitude(longitude);
 		newIncident.setLocation(location);
+		newIncident.setSrn(UUID.randomUUID().toString());
 		incidentDao.save(newIncident);
 		
 		SanitationCodeComplaints newSanitationCodeComplaints = new SanitationCodeComplaints();

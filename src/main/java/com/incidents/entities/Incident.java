@@ -5,7 +5,11 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+
 import com.incidents.enumerations.TypeOfServiceRequest;
 
 @Entity
@@ -17,8 +21,6 @@ public class Incident implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@GeneratedValue(generator = "UUID")
-	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 	@Column(name = "srn", length = 200)
 	private String srn;
 

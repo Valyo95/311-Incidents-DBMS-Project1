@@ -12,7 +12,7 @@ import com.incidents.enumerations.TypeOfServiceRequest;
 import com.incidents.repositories.AbandonedVehiclesDAO;
 import com.incidents.repositories.IncidentDAO;
 import com.incidents.repositories.LightsAllOutDAO;
-import com.tc.util.UUID;
+import java.util.UUID;
 
 @Service("LightsAllOut")
 public class LightsAllOutService {
@@ -41,6 +41,7 @@ public class LightsAllOutService {
 		newIncident.setLatitude(latitude);
 		newIncident.setLongitude(longitude);
 		newIncident.setLocation(location);
+		newIncident.setSrn(UUID.randomUUID().toString());
 		incidentDao.save(newIncident);
 		
 		LightsAllOut newLightsAllOut = new LightsAllOut();

@@ -1,6 +1,7 @@
 package com.incidents.services.impl;
 
 import java.util.Date;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,6 @@ import com.incidents.enumerations.TypeOfServiceRequest;
 import com.incidents.repositories.AbandonedVehiclesDAO;
 import com.incidents.repositories.IncidentDAO;
 import com.incidents.repositories.TreeDebrisDAO;
-import com.tc.util.UUID;
 
 @Service("TreeDebris")
 public class TreeDebrisService {
@@ -41,6 +41,7 @@ public class TreeDebrisService {
 		newIncident.setLatitude(latitude);
 		newIncident.setLongitude(longitude);
 		newIncident.setLocation(location);
+		newIncident.setSrn(UUID.randomUUID().toString());
 		incidentDao.save(newIncident);
 		
 		TreeDebris newTreeDebris = new TreeDebris();
