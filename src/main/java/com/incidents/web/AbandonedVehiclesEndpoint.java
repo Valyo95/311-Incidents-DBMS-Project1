@@ -2,9 +2,17 @@ package com.incidents.web;
 
 import java.security.Principal;
 import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +22,7 @@ import com.incidents.entities.AbandonedVehicles;
 import com.incidents.entities.MyUser;
 import com.incidents.entities.TreeTrims;
 import com.incidents.exceptions.EntityNotFoundException;
+import com.incidents.repositories.IncidentDAO;
 import com.incidents.services.Users;
 import com.incidents.services.impl.AbandonedVehiclesService;
 import com.incidents.services.impl.TreeTrimsService;
@@ -21,6 +30,9 @@ import com.incidents.services.impl.TreeTrimsService;
 @RestController
 public class AbandonedVehiclesEndpoint {
 
+	  @Autowired
+	  private IncidentDAO inDao;
+	
 	  @Autowired
 	  private Users userService;
 	  
@@ -44,7 +56,19 @@ public class AbandonedVehiclesEndpoint {
 		      }
 		    
 		    return service.create(status, streetAddress, zipCode, xCoordinate, yCoordinate, ward, policeDistrict, communityArea, latitude, longitude, location, licensePlate, model, color, currentActivity, mostRecentAction, daysAbandoned, ssa);
-		    
 	  }
-	
+		    
+	  @SuppressWarnings("deprecation")
+	  @RequestMapping(value = "/first", method = RequestMethod.GET)
+	    public List<Pair<String, Integer>> logout(Principal principal) {		
+		  System.out.println("akjsfhkashdfkl\n\n\n");
+	  	  List<Pair<String, Integer>> s = inDao.first(new Date(2000, 12, 31), new Date(2020, 12, 31));
+		  System.out.println(s.size());
+		  for (Pair<String, Integer> pair : s) {
+			System.out.println(pair.getFirst());
+			System.out.println(pair.getSecond());
+		  }
+	      return inDao.first(new Date(2000, 12, 31), new Date(2020, 12, 31));
+	    }
+
 }

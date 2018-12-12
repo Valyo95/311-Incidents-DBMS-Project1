@@ -10,7 +10,13 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import com.incidents.enumerations.TypeOfServiceRequest;
-
+import com.incidents.util.Constants;
+@NamedNativeQueries({
+    @NamedNativeQuery(
+        name = Constants.TOTAL_REQUESTS_PER_TYPE,
+        query = "select * from totalrequestspertype(?1, ?2)"
+    )
+})
 @Entity
 @Table(name = "INCIDENT")
 public class Incident implements Serializable {
