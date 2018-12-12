@@ -12,6 +12,7 @@ import com.incidents.enumerations.TypeOfServiceRequest;
 import com.incidents.repositories.AbandonedVehiclesDAO;
 import com.incidents.repositories.IncidentDAO;
 import com.incidents.repositories.TreeDebrisDAO;
+import com.tc.util.UUID;
 
 @Service("TreeDebris")
 public class TreeDebrisService {

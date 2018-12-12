@@ -12,6 +12,7 @@ import com.incidents.enumerations.TypeOfServiceRequest;
 import com.incidents.repositories.AbandonedVehiclesDAO;
 import com.incidents.repositories.IncidentDAO;
 import com.incidents.repositories.StreetLightOneOutDAO;
+import com.tc.util.UUID;
 
 @Service("StreetLightOneOut")
 public class StreetLightOneOutService {

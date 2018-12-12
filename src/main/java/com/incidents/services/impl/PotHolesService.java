@@ -12,6 +12,7 @@ import com.incidents.enumerations.TypeOfServiceRequest;
 import com.incidents.repositories.AbandonedVehiclesDAO;
 import com.incidents.repositories.IncidentDAO;
 import com.incidents.repositories.PotHolesDAO;
+import com.tc.util.UUID;
 
 @Service("PotHoles")
 public class PotHolesService {
@@ -25,7 +26,7 @@ public class PotHolesService {
 	@Transactional
 	public PotHoles create(String status, String streetAddress, String zipCode, Double xCoordinate,
 			Double yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Double latitude, Double longitude,
-			String location, String currentActivity, String mostRecentAction, Integer potHoles,
+			String location, String currentActivity, String mostRecentAction, Double potHoles,
 			String ssa) {
 		Incident newIncident = new Incident();
 		newIncident.setCreatedAt(new Date());

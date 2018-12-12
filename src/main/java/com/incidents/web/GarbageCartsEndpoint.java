@@ -30,7 +30,7 @@ public class GarbageCartsEndpoint {
 	  @RequestMapping(value = "/garbageCartsEndpoint/create", method = RequestMethod.POST, headers = "Accept=application/json")
 	  public GarbageCarts create(Principal principal, @RequestParam("status") String status, @RequestParam("streetAddress") String streetAddress, @RequestParam("zipCode") String zipCode, @RequestParam("xCoordinate") Double xCoordinate,
 			  @RequestParam("yCoordinate") Double yCoordinate, @RequestParam("ward") Integer ward, @RequestParam("policeDistrict") Integer policeDistrict, @RequestParam("communityArea") Integer communityArea, @RequestParam("latitude") Double latitude, @RequestParam("longitude") Double longitude,
-			  @RequestParam("location") String location, @RequestParam("blackCartsDelivered") Integer blackCartsDelivered, @RequestParam("currentActivity") String currentActivity,
+			  @RequestParam("location") String location, @RequestParam("blackCartsDelivered") Long blackCartsDelivered, @RequestParam("currentActivity") String currentActivity,
 			  @RequestParam("mostRecentAction") String mostRecentAction, @RequestParam("ssa") String ssa) {
 		  MyUser user;
 		  

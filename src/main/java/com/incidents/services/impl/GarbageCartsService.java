@@ -12,6 +12,7 @@ import com.incidents.enumerations.TypeOfServiceRequest;
 import com.incidents.repositories.AbandonedVehiclesDAO;
 import com.incidents.repositories.GarbageCartsDAO;
 import com.incidents.repositories.IncidentDAO;
+import com.tc.util.UUID;
 
 @Service("GarbageCarts")
 public class GarbageCartsService {
@@ -25,7 +26,7 @@ public class GarbageCartsService {
 	@Transactional
 	public GarbageCarts create(String status, String streetAddress, String zipCode, Double xCoordinate,
 			Double yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Double latitude, Double longitude,
-			String location, Integer blackCartsDelivered, String currentActivity,
+			String location, Long blackCartsDelivered, String currentActivity,
 		 String mostRecentAction, String ssa) {
 		Incident newIncident = new Incident();
 		newIncident.setCreatedAt(new Date());

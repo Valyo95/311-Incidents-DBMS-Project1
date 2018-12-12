@@ -30,7 +30,7 @@ public class PotHolesEndpoint {
 	  @RequestMapping(value = "/potHolesEndpoint/create", method = RequestMethod.POST, headers = "Accept=application/json")
 	  public PotHoles create(Principal principal, @RequestParam("status") String status, @RequestParam("streetAddress") String streetAddress, @RequestParam("zipCode") String zipCode, @RequestParam("xCoordinate") Double xCoordinate,
 			  @RequestParam("yCoordinate") Double yCoordinate, @RequestParam("ward") Integer ward, @RequestParam("policeDistrict") Integer policeDistrict, @RequestParam("communityArea") Integer communityArea, @RequestParam("latitude") Double latitude, @RequestParam("longitude") Double longitude,
-			  @RequestParam("location") String location, @RequestParam("currentActivity") String currentActivity, @RequestParam("mostRecentAction") String mostRecentAction, @RequestParam("potHoles") Integer potHoles,
+			  @RequestParam("location") String location, @RequestParam("currentActivity") String currentActivity, @RequestParam("mostRecentAction") String mostRecentAction, @RequestParam("potHoles") Double potHoles,
 			  @RequestParam("ssa") String ssa) {
 		  MyUser user;
 		  

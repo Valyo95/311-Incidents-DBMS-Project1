@@ -19,7 +19,7 @@ public class GarbageCarts implements Serializable{
 	
 
 	@Column(name = "BLACK_CARTS_DELIEVRED")
-	private Integer blackCartsDelivered;
+	private Long blackCartsDelivered;
 
 	@Column(name = "CURRENT_ACTIVITY" , length = 200)
 	private String currentActivity;
@@ -35,7 +35,7 @@ public class GarbageCarts implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public GarbageCarts(final Integer id, final Incident incident, final Integer blackCartsDelivered, final String currentActivity,
+	public GarbageCarts(final Integer id, final Incident incident, final Long blackCartsDelivered, final String currentActivity,
 			final String mostRecentAction, final String ssa) {
 		super();
 		this.id = id;
@@ -62,11 +62,11 @@ public class GarbageCarts implements Serializable{
 		this.incident = incident;
 	}
 
-	public Integer getBlackCartsDelivered() {
+	public Long getBlackCartsDelivered() {
 		return blackCartsDelivered;
 	}
 
-	public void setBlackCartsDelivered(final Integer blackCartsDelivered) {
+	public void setBlackCartsDelivered(final Long blackCartsDelivered) {
 		this.blackCartsDelivered = blackCartsDelivered;
 	}
 

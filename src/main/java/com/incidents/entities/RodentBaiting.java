@@ -18,13 +18,13 @@ public class RodentBaiting implements Serializable {
 	private Incident incident;
 
 	@Column(name = "PREMISES_BAITED")
-	private Integer premisesBaited;
+	private Double premisesBaited;
 
 	@Column(name = "PREMISES_WITH_GARBAGE")
-	private Integer premisesWithGarbage;
+	private Double premisesWithGarbage;
 
 	@Column(name = "PREMISES_WITH_RATS")
-	private Integer premisesWithRats;
+	private Double premisesWithRats;
 
 	@Column(name = "CURRENT_ACTIVITY", length = 200)
 	private String currentActivity;
@@ -37,8 +37,8 @@ public class RodentBaiting implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public RodentBaiting(final Integer id, final Incident incident, final Integer premisesBaited,
-			final Integer premisesWithGarbage, final Integer premisesWithRats, final String currentActivity,
+	public RodentBaiting(final Integer id, final Incident incident, final Double premisesBaited,
+			final Double premisesWithGarbage, final Double premisesWithRats, final String currentActivity,
 			final String mostRecentAction) {
 		super();
 		this.id = id;
@@ -66,27 +66,27 @@ public class RodentBaiting implements Serializable {
 		this.incident = incident;
 	}
 
-	public Integer getPremisesBaited() {
+	public Double getPremisesBaited() {
 		return premisesBaited;
 	}
 
-	public void setPremisesBaited(final Integer premisesBaited) {
+	public void setPremisesBaited(final Double premisesBaited) {
 		this.premisesBaited = premisesBaited;
 	}
 
-	public Integer getPremisesWithGarbage() {
+	public Double getPremisesWithGarbage() {
 		return premisesWithGarbage;
 	}
 
-	public void setPremisesWithGarbage(final Integer premisesWithGarbage) {
+	public void setPremisesWithGarbage(final Double premisesWithGarbage) {
 		this.premisesWithGarbage = premisesWithGarbage;
 	}
 
-	public Integer getPremisesWithRats() {
+	public Double getPremisesWithRats() {
 		return premisesWithRats;
 	}
 
-	public void setPremisesWithRats(final Integer premisesWithRats) {
+	public void setPremisesWithRats(final Double premisesWithRats) {
 		this.premisesWithRats = premisesWithRats;
 	}
 

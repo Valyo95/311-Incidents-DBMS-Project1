@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "LIGHTS_ALL_OUT")
+@Table(name = "LIGHTS_ONE_OUT")
 public class StreetLightOneOut implements Serializable {
 	private static final long serialVersionUID = 1L;
 

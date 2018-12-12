@@ -12,6 +12,7 @@ import com.incidents.enumerations.TypeOfServiceRequest;
 import com.incidents.repositories.AbandonedVehiclesDAO;
 import com.incidents.repositories.IncidentDAO;
 import com.incidents.repositories.RodentBaitingDAO;
+import com.tc.util.UUID;
 
 @Service("RodentBaiting")
 public class RodentBaitingService {
@@ -25,7 +26,7 @@ public class RodentBaitingService {
 	@Transactional
 	public RodentBaiting create(String status, String streetAddress, String zipCode, Double xCoordinate,
 			Double yCoordinate, Integer ward, Integer policeDistrict, Integer communityArea, Double latitude, Double longitude,
-			String location, Integer premisesBaited, Integer premisesWithGarbage, Integer premisesWithRats, String currentActivity, String mostRecentAction) {
+			String location, Double premisesBaited, Double premisesWithGarbage, Double premisesWithRats, String currentActivity, String mostRecentAction) {
 		Incident newIncident = new Incident();
 		newIncident.setCreatedAt(new Date());
 		newIncident.setType(TypeOfServiceRequest.RODENT_BAITING);

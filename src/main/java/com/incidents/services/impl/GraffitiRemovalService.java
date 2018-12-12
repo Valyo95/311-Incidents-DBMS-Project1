@@ -12,6 +12,7 @@ import com.incidents.enumerations.TypeOfServiceRequest;
 import com.incidents.repositories.AbandonedVehiclesDAO;
 import com.incidents.repositories.GraffitiRemovalDAO;
 import com.incidents.repositories.IncidentDAO;
+import com.tc.util.UUID;
 
 @Service("GraffitiRemoval")
 public class GraffitiRemovalService {

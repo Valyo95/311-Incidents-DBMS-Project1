@@ -23,7 +23,7 @@ public class PotHoles implements Serializable {
 	private String mostRecentAction;
 
 	@Column(name = "POT_HOLS")
-	private Integer potHoles;
+	private Double potHoles;
 
 	@Column(name = "SSA", length = 200)
 	private String ssa;
@@ -33,7 +33,7 @@ public class PotHoles implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PotHoles(Integer id, Incident incident, String currentActivity, String mostRecentAction, Integer potHoles,
+	public PotHoles(Integer id, Incident incident, String currentActivity, String mostRecentAction, Double potHoles,
 			String ssa) {
 		super();
 		this.id = id;
@@ -76,11 +76,11 @@ public class PotHoles implements Serializable {
 		this.mostRecentAction = mostRecentAction;
 	}
 
-	public Integer getPotHoles() {
+	public Double getPotHoles() {
 		return potHoles;
 	}
 
-	public void setPotHoles(Integer potHoles) {
+	public void setPotHoles(Double potHoles) {
 		this.potHoles = potHoles;
 	}
 
