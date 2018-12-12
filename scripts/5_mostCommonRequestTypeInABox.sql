@@ -5,7 +5,7 @@ create or replace function mostCommonRequestTypeInABox(int, int, int, int, date)
 ) 
 AS $$
 
-select service_request_type, count(srn) as incindents 
+select service_request_type, count(id) as incindents 
 from incident
 	where latitude between $1 and $2
 	and longitude between $3 and $4

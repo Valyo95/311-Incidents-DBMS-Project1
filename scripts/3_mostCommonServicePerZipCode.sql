@@ -8,14 +8,14 @@ create function mostCommonServicePerZipCode(date)
 ) 
 AS $$
 select * from (
-	select zip_code, service_request_type as srt, count(srn) as incidents  from incident
-	where creation_date = date '2018-12-10'
+	select zip_code, service_request_type as srt, count(id) as incidents  from incident
+	where creation_date = $1
 	group by zip_code, service_request_type
 )	as alll
 where (zip_code, incidents) in (	
 	select zip_code, max(incidents) from(
-		select zip_code, service_request_type as srt, count(srn) as incidents  from incident
-		where creation_date = date '2018-12-10'
+		select zip_code, service_request_type as srt, count(id) as incidents  from incident
+		where creation_date = $1
 		group by zip_code, service_request_type
 	) as zip_requests
 	group by zip_code)

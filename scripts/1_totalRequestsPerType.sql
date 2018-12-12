@@ -6,7 +6,7 @@ create function totalRequestsPerType(timestamp , timestamp )
 ) 
 AS $$
 
- select service_request_type, count(srn) as incidents from incident
+ select service_request_type, count(id) as incidents from incident
  where creation_date between $1 and $2
  group by service_request_type
  order by incidents desc
