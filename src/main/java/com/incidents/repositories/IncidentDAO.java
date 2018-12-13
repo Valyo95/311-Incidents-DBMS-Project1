@@ -17,7 +17,7 @@ public interface IncidentDAO extends JpaRepository<Incident, String>{
     List<Object> getTotalRequestsPerType(Date start_date, Date end_date);
 	
 	@Query(value = "select * from totalrequestsperday(?1, ?2, ?3)", nativeQuery = true)
-    List<Object> getTotalRequestsPerDayAndType(TypeOfServiceRequest type,Date start_date, Date end_date);
+    List<Object> getTotalRequestsPerDayAndType(String type,Date start_date, Date end_date);
 	
 	@Query(value = "select * from mostcommonserviceperzipcode(date ?1)", nativeQuery = true)
     List<Object> mostCommonServicePerZipCode(Date date);

@@ -237,9 +237,9 @@ appControllers.controller("ReportController", function($scope, $http, $location,
 			method : "POST",
 			url : $scope.endpointPath + $scope.createPath,
 			params : $scope.getIncidentParams(),
-      headers : {
-          'Content-Type' : 'application/json'
-      }
+			headers : {
+			  'Content-Type' : 'application/json'
+			}
 		})
 		.then(
 			function(response) {

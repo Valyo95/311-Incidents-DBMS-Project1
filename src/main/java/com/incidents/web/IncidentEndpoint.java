@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -62,6 +63,8 @@ public class IncidentEndpoint {
 
 	@RequestMapping(value = "/getTotalRequestsPerDayAndType", method = RequestMethod.GET)
 	public List<Object> getTotalRequestsPerDayAndType(Principal principal,
+			@RequestParam("start") int start,
+			@RequestParam("size") int size,
 			@RequestParam("type") TypeOfServiceRequest typeOfServiceRequest,
 			@RequestParam("fromDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fromDate,
 			@RequestParam("toDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date toDate) throws ParseException {
@@ -76,7 +79,21 @@ public class IncidentEndpoint {
 			return null;
 		}
 
-		return inDao.getTotalRequestsPerDayAndType(typeOfServiceRequest, fromDate, toDate);
+		List<Object> resultList = inDao.getTotalRequestsPerDayAndType(typeOfServiceRequest.name(), fromDate, toDate);
+		
+		//Paging handling
+		int listSize = resultList.size();
+		int end = start + size;
+		
+		if (start >= listSize) {
+			return new ArrayList<Object>();
+		}
+		
+		if (end > listSize) {
+			end = listSize;
+		}
+		
+		return resultList.subList(start, end);
 	}
 	
 	@RequestMapping(value = "/mostCommonServicePerZipCode", method = RequestMethod.GET)
