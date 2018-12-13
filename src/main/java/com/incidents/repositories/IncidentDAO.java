@@ -19,12 +19,12 @@ public interface IncidentDAO extends JpaRepository<Incident, String>{
 	@Query(value = "select * from totalrequestsperday(?1, ?2, ?3)", nativeQuery = true)
     List<Object> getTotalRequestsPerDayAndType(String type,Date start_date, Date end_date);
 	
-	@Query(value = "select * from mostcommonserviceperzipcode(date ?1)", nativeQuery = true)
+	@Query(value = "select * from mostcommonserviceperzipcode(?1)", nativeQuery = true)
     List<Object> mostCommonServicePerZipCode(Date date);
 
-	@Query(value = "select * from avgcompletiontime(date ?1, date ?2)", nativeQuery = true)
+	@Query(value = "select * from avgcompletiontime(?1, ?2)", nativeQuery = true)
     List<Object> avgCompletionTime(Date start_date, Date end_date);
 
-	@Query(value = "select * from topfivessa(date ?1, date ?2)", nativeQuery = true)
+	@Query(value = "select * from topfivessa(?1, ?2)", nativeQuery = true)
     List<Object> topFiveSSA(Date start_date, Date end_date);
 }

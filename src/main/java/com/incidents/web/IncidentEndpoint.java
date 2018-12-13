@@ -98,6 +98,8 @@ public class IncidentEndpoint {
 	
 	@RequestMapping(value = "/mostCommonServicePerZipCode", method = RequestMethod.GET)
 	public List<Object> mostCommonServicePerZipCode(Principal principal,
+			@RequestParam("start") int start,
+			@RequestParam("size") int size,
 			@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) throws ParseException {
 
 		if (principal != null) {
@@ -110,7 +112,21 @@ public class IncidentEndpoint {
 			return null;
 		}
 
-		return inDao.mostCommonServicePerZipCode(date);
+		List<Object> resultList = inDao.mostCommonServicePerZipCode(date);
+		
+		//Paging handling
+		int listSize = resultList.size();
+		int end = start + size;
+		
+		if (start >= listSize) {
+			return new ArrayList<Object>();
+		}
+		
+		if (end > listSize) {
+			end = listSize;
+		}
+		
+		return resultList.subList(start, end);
 	}
 	
 	@RequestMapping(value = "/avgCompletionTime", method = RequestMethod.GET)
