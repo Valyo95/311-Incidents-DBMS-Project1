@@ -1,18 +1,91 @@
 <div class="container">
 
   <div ng-show="!getIsLoggedIn()" ng-cloak>
-    <h2 style="transition: all .5s;">Welcome to 311 Chicago Incidents! You must first register or login to browse the website<h2>
+    <h2 style="transition: all .5s;">Welcome to 311 Chicago Incidents! You must first register or login to browse the website</h2>
   </div>
-  
+
   <div ng-show="getIsLoggedIn()" ng-cloak>
   
-    <div class="row rounded">
-      <div infinite-scroll="addIncidents()" infinite-scroll-distance="1" class="leftcolumn">
-        <div class="card" ng-repeat="incident in incidents">
-        <p>{{incident}}</p>
+    <h2 style="transition: all .5s;">Welcome to 311 Chicago Incidents! You can search for an incident using the form below</h2>  
+
+    <form class="form-horizontal" ng-submit="search()">
+
+    <div class="row">
+    <div class="form-group">
+          <label class="control-label col-sm-2" for="zipCode">Zip Code:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="zipCode" placeholder="Enter Zip Code" name="zipCode" ng-model="searchParams.zipCode">
+           </div>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="form-group">
+          <label class="control-label col-sm-2" for="streetAddress">Street Address:</label>
+          <div class="col-sm-6">          
+          <input type="text" class="form-control" id="streetAddress" placeholder="Enter Street Address" name="streetAddress" ng-model="searchParams.streetAddress">
+           </div>
+    </div>
+    </div>
+
+      <div class="row">
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="type">Service Request Type:</label>
+        <div class="col-sm-6">
+          <select ng-model="selectedRequestType" ng-options="type.name for type in requestTypes">
+          </select>
         </div>
       </div>
-    </div>
+      </div>
+
+      <div class="row">
+      <div class="form-group">        
+        <div class="col-sm-offset-2 col-sm-10">
+        <input type="submit" value="Search" class="btn btn-default"/>
+      </div>
+      </div>
+      </div>
+
+    </form>
+
+
+    <table class="table table-hovered">
+    <tr>
+      <th>Service Request Number</th>
+      <th>Status</th>
+      <th>Type</th>
+      <th>Street Address</th>
+      <th>ZIP Code</th>
+      <th>X Coordinate</th>
+      <th>Y Coordinate</th>
+      <th>Ward</th>
+      <th>Police district</th>
+      <th>Community Area</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Location</th>
+      <th>Date Reported</th>
+      <th>Completion Date</th>
+    </tr>
+    <tr infinite-scroll="addResults()" infinite-scroll-distance="0" ng-repeat="incident in searchResults">
+      <td>{{incident.srn}}</td>
+      <td>{{incident.status}}</td>
+      <td>{{incident.type}}</td>
+      <td>{{incident.streetAddress}}</td>
+      <td>{{incident.zipCode}}</td>
+      <td>{{incident.xCoordinate}}</td>
+      <td>{{incident.yCoordinate}}</td>
+      <td>{{incident.ward}}</td>
+      <td>{{incident.policeDistrict}}</td>
+      <td>{{incident.communityArea}}</td>
+      <td>{{incident.latitude}}</td>
+      <td>{{incident.longitude}}</td>
+      <td>{{incident.location}}</td>
+      <td>{{incident.createdAt}}</td>
+      <td>{{incident.completionDate}}</td>
+    </tr>
+  </table>
+
   </div>
 
 </div>

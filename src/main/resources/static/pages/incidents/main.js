@@ -1,95 +1,108 @@
 'use strict';
 
 appControllers.controller("IncidentsController", function($scope, $http, $location, $rootScope, $window, notify) {
-		
-	var endpointPath = '/incidentsEndpoint';
-	$scope.fetchPath = endpointPath + '/fetchAll';
-	$scope.createPath = endpointPath + '/create';
 	
-	// Page data
-	$scope.data = {};
+	$scope.searchPath = '/searchByZipOrStreetOrType';
+	$scope.searchResults = [];
 
-	$scope.incidents = [];
+	$scope.requestTypes = [
+		{name : "", value : null},
+		{name : "ABANDONED VEHICLE", value : "ABANDONED_VEHICLES"},
+		{name : "ALLEY LIGHTS OUT", value : "ALLEY_LIGHTS_OUT"},
+		{name : "GARBAGE CART", value : "GARBAGE_CARTS"},
+		{name : "GRAFFITI REMOVAL", value : "GRAFFITI_REMOVAL"},
+		{name : "POT HOLES", value : "POT_HOLES_REPORTED"},
+		{name : "RODENT BAITING", value : "RODENT_BAITING"},
+		{name : "SANITATION CODE", value : "SANITATION_CODE_COMPLAINTS"},
+		{name : "LIGHTS ALL OUT", value : "LIGHTS_ALL_OUT"},
+		{name : "STREET LIGHT ONE OUT", value : "STREET_LIGHT_ONE_OUT"},
+		{name : "TREE DEBRIS", value : "TREE_DEBRIS"},
+		{name : "TREE TRIMS", value : "TREE_TRIMS"}
+	];
+
+	$scope.selectedRequestType = $scope.requestTypes[0];
+
+	$scope.searchParams = {
+		zipCode : "",
+		streetAddress : ""
+	};
 
 	//Infinite scroll vars
+	$scope.currentType = "";
+	$scope.currentZipCode = "";
+	$scope.currentStreetAddress = "";
 	$scope.start = 0;
-	$scope.size = 5;
+	$scope.size = 10;
 	$scope.isBusy = true;
 
 	$scope.getIsLoggedIn = function () {
         return $rootScope.isLoggedIn;
-  };
+  	};
 
-	//New incident
-	$scope.createIncident = function() {
-		//console.log('in createPost');
-		$http({
-			method : "POST",
-			url : $scope.createPath,
-			data : angular.toJson({str : $scope.content}),
-      headers : {
-          'Content-Type' : 'application/json'
-      }
-		})
-		.then(
-			function(response) {
-				//console.log('done with content')
-				var incidentId = response.data.id;
-			},
-			_error)
-	}
+  	function returnNullIfEmpty(str) {
+  		if (!str || str.trim() == "")
+  			return null;
 
-	// Get data function for this page
-	$scope.fetchAll = function() { 
+  		return str;
+  	}
+
+	$scope.search = function() {
+		//Reset infinite-scroll params and data
+		$scope.currentType = $scope.selectedRequestType;
+		$scope.currentZipCode = returnNullIfEmpty($scope.searchParams.zipCode);
+		$scope.currentStreetAddress = returnNullIfEmpty($scope.searchParams.streetAddress);
+		$scope.start = 0;
+		$scope.searchResults = [];
+
+
 		$http({
 			method : "GET",
-			url : $scope.fetchPath,
+			url : $scope.searchPath,
 			params : {
 				start : $scope.start,
-				size : $scope.size
+				size : $scope.size,
+				zipCode: $scope.currentZipCode,
+				streetAddress: $scope.currentStreetAddress,
+				typeOfServiceRequest: $scope.currentType.value
+			},
+			headers : {
+			  'Content-Type' : 'application/json'
 			}
-		}).then(_success, _error);
-	}
-	
-
-	function _success(response) {
-
-   		var newIncidents = response.data.first;
-   		
-		for (var i = 0; i < newIncidents.length; i++) {
-			$scope.incidents.push(newIncidents[i]);
-
-			var incidentId = newIncidents[i].id;
-		}
-
-		$scope.start += newIncidents.length;
-		$scope.isBusy = false; 
+		})
+		.then(_success, _error)
 	}
 
-   function _error(response) {
-       console.log(response.statusText);
-   }
-
-   $scope.addIncidents = function () {
+   $scope.addResults = function () {
    	if($scope.isBusy === true) return; // request in progress, return
    	$scope.isBusy = true;
    	$http({
 			method : "GET",
-			url : $scope.fetchPath,
+			url : $scope.searchPath,
 			params : {
 				start : $scope.start,
-				size : $scope.size
+				size : $scope.size,
+				zipCode: $scope.currentZipCode,
+				streetAddress: $scope.currentStreetAddress,
+				typeOfServiceRequest: $scope.currentType.value
 			}
 		}).then(_success, _error);
    }
 
-  $scope.viewUser = function(id) {
-    $window.sessionStorage.setItem("userId", id);
-    $location.path('/profile');
-  }
-   
-   // Invoke the fetch all function
-   $scope.fetchAll();
+   	function _success(response) {
+
+   		var newResults = response.data;
+   		
+		for (var i = 0; i < newResults.length; i++) {
+			$scope.searchResults.push(newResults[i]);
+		}
+
+		$scope.start += newResults.length;
+		$scope.isBusy = false; 
+	}
+
+   function _error(response) {
+  		notify({message: response, duration: 5000});
+   		console.log(response);
+   }
 
 });
-		
