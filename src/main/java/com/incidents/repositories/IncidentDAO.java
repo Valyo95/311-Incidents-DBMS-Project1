@@ -63,7 +63,7 @@ public interface IncidentDAO extends JpaRepository<Incident, String>{
 	
 	List<Incident> findByStreetAddressAndZipCodeAndType(String streetAddress, String zipCode, TypeOfServiceRequest type);
 	
-	@Query(value = "select * from incident where zip_code = ?1 and street_address = ?2 and service_request_type = ?3 offset ?4 limit ?5", nativeQuery = true)
+	@Query(value = "select * from incident where street_address = ?1 and zip_code = ?2 and service_request_type = ?3 offset ?4 limit ?5", nativeQuery = true)
 	List<Incident> findByStreetAddressAndZipCodeAndTypePaged(String streetAddress, String zipCode, String type, int start, int size);
 
 	@Query(value = "select * from policedistricts()", nativeQuery = true)
