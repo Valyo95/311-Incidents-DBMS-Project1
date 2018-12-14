@@ -4,6 +4,7 @@ appControllers.controller("SP3Controller", function($scope, $http, $location, $r
 		
 	$scope.searchPath = '/mostCommonServicePerZipCode';
 	$scope.searchResults = [];
+	$scope.hasSearched = false;
 
 	$scope.searchParams = {
 		date : ""
@@ -21,6 +22,8 @@ appControllers.controller("SP3Controller", function($scope, $http, $location, $r
   	};
 
 	$scope.search = function() {
+		$scope.hasSearched = true;
+
 		//Reset infinite-scroll params and data
 		$scope.currentType = $scope.selectedRequestType;
 		$scope.currentDate = $scope.searchParams.date;

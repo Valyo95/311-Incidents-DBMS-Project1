@@ -4,6 +4,7 @@ appControllers.controller("SP1Controller", function($scope, $http, $location, $r
 		
 	$scope.searchPath = '/getTotalRequestsPerType';
 	$scope.searchResults = [];
+	$scope.hasSearched = false;
 
 	$scope.searchParams = {
 		startDate : "",
@@ -15,6 +16,8 @@ appControllers.controller("SP1Controller", function($scope, $http, $location, $r
   	};
 
 	$scope.search = function() {
+		$scope.hasSearched = true;
+
 		$http({
 			method : "GET",
 			url : $scope.searchPath,

@@ -4,6 +4,7 @@ appControllers.controller("IncidentsController", function($scope, $http, $locati
 	
 	$scope.searchPath = '/searchByZipOrStreetOrType';
 	$scope.searchResults = [];
+	$scope.hasSearched = false;
 
 	$scope.requestTypes = [
 		{name : "", value : null},
@@ -47,10 +48,12 @@ appControllers.controller("IncidentsController", function($scope, $http, $locati
   	}
 
 	$scope.search = function() {
+		$scope.hasSearched = true;
+
 		//Reset infinite-scroll params and data
 		$scope.currentType = $scope.selectedRequestType;
 		$scope.currentZipCode = returnNullIfEmpty($scope.searchParams.zipCode);
-		$scope.currentStreetAddress = returnNullIfEmpty($scope.searchParams.streetAddress);
+		$scope.currentStreetAddress = returnNullIfEmpty($scope.searchParams.streetAddress)	;
 		$scope.start = 0;
 		$scope.searchResults = [];
 

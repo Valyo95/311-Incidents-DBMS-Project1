@@ -4,6 +4,7 @@ appControllers.controller("SP2Controller", function($scope, $http, $location, $r
 		
 	$scope.searchPath = '/getTotalRequestsPerDayAndType';
 	$scope.searchResults = [];
+	$scope.hasSearched = false;
 
 	$scope.requestTypes = [
 		{name : "ABANDONED VEHICLE", value : "ABANDONED_VEHICLES"},
@@ -39,6 +40,8 @@ appControllers.controller("SP2Controller", function($scope, $http, $location, $r
   	};
 
 	$scope.search = function() {
+		$scope.hasSearched = true;
+
 		//Reset infinite-scroll params and data
 		$scope.currentType = $scope.selectedRequestType;
 		$scope.currentStart = $scope.searchParams.startDate;

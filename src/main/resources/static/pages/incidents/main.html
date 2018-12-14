@@ -1,12 +1,14 @@
 <div class="container">
 
   <div ng-show="!getIsLoggedIn()" ng-cloak>
-    <h2 style="transition: all .5s;">Welcome to 311 Chicago Incidents! You must first register or login to browse the website</h2>
+    <h2 style="transition: all .5s;">Welcome to 311 Chicago Incidents!</h2><br/>
+    <h2>You must first register or login to browse the website</h2>
   </div>
 
   <div ng-show="getIsLoggedIn()" ng-cloak>
   
-    <h2 style="transition: all .5s;">Welcome to 311 Chicago Incidents! You can search for an incident using the form below</h2>  
+    <h2 style="transition: all .5s;">Welcome to 311 Chicago Incidents!</h2><br/>
+    <h2>You can search for an incident using the form below</h2>  
 
     <form class="form-horizontal" ng-submit="search()">
 
@@ -49,7 +51,7 @@
     </form>
 
 
-    <table class="table table-hovered">
+    <table ng-show="hasSearched" class="table table-hovered">
     <tr>
       <th>Service Request Number</th>
       <th>Status</th>
