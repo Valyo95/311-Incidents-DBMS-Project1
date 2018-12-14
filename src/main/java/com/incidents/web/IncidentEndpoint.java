@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.incidents.entities.AbandonedVehicles;
+import com.incidents.entities.Incident;
 import com.incidents.entities.MyUser;
 import com.incidents.entities.TreeTrims;
 import com.incidents.enumerations.TypeOfServiceRequest;
@@ -47,6 +48,85 @@ public class IncidentEndpoint {
 
 	@Autowired
 	private AuditService auditService;
+	
+	@RequestMapping(value = "/searchByZipOrStreetOrType", method = RequestMethod.GET)
+	public List<Incident> searchByZipOrStreetOrType(Principal principal,
+			@RequestParam("start") int start,
+			@RequestParam("size") int size,
+			@RequestParam(name = "zipCode", required = false) String zipCode,
+			@RequestParam(name = "streetAddress", required = false) String streetAddress,
+			@RequestParam(name = "typeOfServiceRequest", required = false) TypeOfServiceRequest typeOfServiceRequest) throws ParseException {
+		MyUser user;
+		if (principal != null) {
+			try {
+				user=userService.findByUsername(principal.getName());
+			} catch (EntityNotFoundException e) {
+				return null;
+			}
+		} else {
+			return null;
+		}
+		auditService.create(user, Util.getMethodName(), String.join(",", zipCode, streetAddress, (typeOfServiceRequest != null) ? typeOfServiceRequest.name() : "null"));
+
+		List<Incident> resultList = new ArrayList<>();
+		
+		if (zipCode == null && streetAddress == null && typeOfServiceRequest == null) {
+			resultList = inDao.findAll();
+		}
+		else {
+			//At least one param is not null
+			
+			if (zipCode == null)
+			{
+				if (streetAddress == null) {
+					resultList = inDao.findByType(typeOfServiceRequest);
+				}
+				//streetAddress != null
+				else if (typeOfServiceRequest == null) {
+					resultList = inDao.findByStreetAddress(streetAddress);
+				}
+				//streetAddress != null  && typeOfServiceRequest != null
+				else {
+					resultList = inDao.findByStreetAddressAndType(streetAddress, typeOfServiceRequest);
+				}
+			}
+			//zipCode != null
+			else if (streetAddress == null) {
+				if (typeOfServiceRequest == null) {
+					resultList = inDao.findByZipCode(zipCode);
+				}
+				// typeOfServiceRequest != null && zipCode != null
+				else {
+					resultList = inDao.findByZipCodeAndType(zipCode, typeOfServiceRequest);
+				}
+				
+			}
+			//zipCode != null && streetAddress != null
+			else {
+				if (typeOfServiceRequest != null) {
+					resultList = inDao.findByStreetAddressAndZipCodeAndType(streetAddress, zipCode, typeOfServiceRequest);
+				}
+				else {
+					resultList = inDao.findByZipCodeAndStreetAddress(zipCode, streetAddress);
+				}
+			}
+		}
+		
+		
+		//Paging handling
+		int listSize = resultList.size();
+		int end = start + size;
+		
+		if (start >= listSize) {
+			return new ArrayList<Incident>();
+		}
+		
+		if (end > listSize) {
+			end = listSize;
+		}
+		
+		return resultList.subList(start, end);
+	}
 
 	@RequestMapping(value = "/getTotalRequestsPerType", method = RequestMethod.GET)
 	public List<Object> getTotalRequestsPerType(Principal principal,
