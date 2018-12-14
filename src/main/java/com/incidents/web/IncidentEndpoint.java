@@ -68,10 +68,10 @@ public class IncidentEndpoint {
 		}
 		auditService.create(user, Util.getMethodName(), String.join(",", zipCode, streetAddress, (typeOfServiceRequest != null) ? typeOfServiceRequest.name() : "null"));
 
-		List<Incident> resultList = new ArrayList<>();
+		List<Incident> result = new ArrayList<>();
 		
 		if (zipCode == null && streetAddress == null && typeOfServiceRequest == null) {
-			resultList = inDao.findAll();
+			result = inDao.findAllPaged(start, size);
 		}
 		else {
 			//At least one param is not null
@@ -79,53 +79,40 @@ public class IncidentEndpoint {
 			if (zipCode == null)
 			{
 				if (streetAddress == null) {
-					resultList = inDao.findByType(typeOfServiceRequest);
+					result = inDao.findByTypePaged(typeOfServiceRequest.name(), start, size);
 				}
 				//streetAddress != null
 				else if (typeOfServiceRequest == null) {
-					resultList = inDao.findByStreetAddress(streetAddress);
+					result = inDao.findByStreetAddressPaged(streetAddress, start, size);
 				}
 				//streetAddress != null  && typeOfServiceRequest != null
 				else {
-					resultList = inDao.findByStreetAddressAndType(streetAddress, typeOfServiceRequest);
+					result = inDao.findByStreetAddressAndTypePaged(streetAddress, typeOfServiceRequest.name(), start, size);
 				}
 			}
 			//zipCode != null
 			else if (streetAddress == null) {
 				if (typeOfServiceRequest == null) {
-					resultList = inDao.findByZipCode(zipCode);
+					result = inDao.findByZipCodePaged(zipCode, start, size);
 				}
 				// typeOfServiceRequest != null && zipCode != null
 				else {
-					resultList = inDao.findByZipCodeAndType(zipCode, typeOfServiceRequest);
+					result = inDao.findByZipCodeAndTypePaged(zipCode, typeOfServiceRequest.name(), start, size);
 				}
 				
 			}
 			//zipCode != null && streetAddress != null
 			else {
 				if (typeOfServiceRequest != null) {
-					resultList = inDao.findByStreetAddressAndZipCodeAndType(streetAddress, zipCode, typeOfServiceRequest);
+					result = inDao.findByStreetAddressAndZipCodeAndTypePaged(streetAddress, zipCode, typeOfServiceRequest.name(), start, size);
 				}
 				else {
-					resultList = inDao.findByZipCodeAndStreetAddress(zipCode, streetAddress);
+					result = inDao.findByZipCodeAndStreetAddressPaged(zipCode, streetAddress, start, size);
 				}
 			}
 		}
 		
-		
-		//Paging handling
-		int listSize = resultList.size();
-		int end = start + size;
-		
-		if (start >= listSize) {
-			return new ArrayList<Incident>();
-		}
-		
-		if (end > listSize) {
-			end = listSize;
-		}
-		
-		return resultList.subList(start, end);
+		return result;
 	}
 
 	@RequestMapping(value = "/getTotalRequestsPerType", method = RequestMethod.GET)
