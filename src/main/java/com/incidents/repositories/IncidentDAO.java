@@ -37,4 +37,8 @@ public interface IncidentDAO extends JpaRepository<Incident, String>{
 	List<Incident> findByStreetAddressAndType(String streeAddress, TypeOfServiceRequest type);
 	
 	List<Incident> findByStreetAddressAndZipCodeAndType(String streeAddress, String zipCode, TypeOfServiceRequest type);
+
+	@Query(value = "select * from policedistricts()", nativeQuery = true)
+    List<Object> policeDistricts();
+
 }
