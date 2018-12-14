@@ -11,6 +11,7 @@ appControllers.controller("SP3Controller", function($scope, $http, $location, $r
 
 	//Infinite scroll vars
 	$scope.currentType = "";
+	$scope.currentDate = "";
 	$scope.start = 0;
 	$scope.size = 10;
 	$scope.isBusy = true;
@@ -22,6 +23,7 @@ appControllers.controller("SP3Controller", function($scope, $http, $location, $r
 	$scope.search = function() {
 		//Reset infinite-scroll params and data
 		$scope.currentType = $scope.selectedRequestType;
+		$scope.currentDate = $scope.searchParams.date;
 		$scope.start = 0;
 		$scope.searchResults = [];
 
@@ -32,7 +34,7 @@ appControllers.controller("SP3Controller", function($scope, $http, $location, $r
 			params : {
 				start : $scope.start,
 				size : $scope.size,
-				date: $scope.searchParams.date
+				date: $scope.currentDate
 			},
 			headers : {
 			  'Content-Type' : 'application/json'
@@ -50,7 +52,7 @@ appControllers.controller("SP3Controller", function($scope, $http, $location, $r
 			params : {
 				start : $scope.start,
 				size : $scope.size,
-				date: $scope.searchParams.date
+				date: $scope.currentDate
 			}
 		}).then(_success, _error);
    }

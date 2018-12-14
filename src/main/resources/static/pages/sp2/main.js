@@ -28,6 +28,8 @@ appControllers.controller("SP2Controller", function($scope, $http, $location, $r
 
 	//Infinite scroll vars
 	$scope.currentType = "";
+	$scope.currentStart = "";
+	$scope.currentEnd = "";
 	$scope.start = 0;
 	$scope.size = 10;
 	$scope.isBusy = true;
@@ -39,6 +41,8 @@ appControllers.controller("SP2Controller", function($scope, $http, $location, $r
 	$scope.search = function() {
 		//Reset infinite-scroll params and data
 		$scope.currentType = $scope.selectedRequestType;
+		$scope.currentStart = $scope.searchParams.startDate;
+		$scope.currentEnd = $scope.searchParams.endDate;
 		$scope.start = 0;
 		$scope.searchResults = [];
 
@@ -50,8 +54,8 @@ appControllers.controller("SP2Controller", function($scope, $http, $location, $r
 				start : $scope.start,
 				size : $scope.size,
 				type: $scope.currentType.value,
-				fromDate: $scope.searchParams.startDate,
-				toDate: $scope.searchParams.endDate
+				fromDate: $scope.currentStart,
+				toDate: $scope.currentEnd
 			},
 			headers : {
 			  'Content-Type' : 'application/json'
@@ -70,8 +74,8 @@ appControllers.controller("SP2Controller", function($scope, $http, $location, $r
 				start : $scope.start,
 				size : $scope.size,
 				type: $scope.currentType.value,
-				fromDate: $scope.searchParams.startDate,
-				toDate: $scope.searchParams.endDate
+				fromDate: $scope.currentStart,
+				toDate: $scope.currentEnd
 			}
 		}).then(_success, _error);
    }
