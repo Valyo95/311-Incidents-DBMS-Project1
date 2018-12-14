@@ -18,8 +18,10 @@ import com.incidents.entities.TreeTrims;
 import com.incidents.exceptions.EntityNotFoundException;
 import com.incidents.repositories.RodentBaitingDAO;
 import com.incidents.services.Users;
+import com.incidents.services.impl.AuditService;
 import com.incidents.services.impl.RodentBaitingService;
 import com.incidents.services.impl.TreeTrimsService;
+import com.incidents.util.Util;
 
 @RestController
 public class RodentBaitingEndpoint {
@@ -29,7 +31,10 @@ public class RodentBaitingEndpoint {
 
 	@Autowired
 	private RodentBaitingDAO rodentBaitingDAO;
-	
+
+	@Autowired
+	private AuditService auditService;
+
 	@Autowired
 	private RodentBaitingService service;
 
@@ -64,53 +69,55 @@ public class RodentBaitingEndpoint {
 	}
 
 	@RequestMapping(value = "/rodentBaitingWithPremisesBaitedLessThan", method = RequestMethod.GET)
-	public List<Object> rodentBaitingWithPremisesBaitedLessThan(Principal principal,
-			@RequestParam("number") int number) throws ParseException {
-
+	public List<Object> rodentBaitingWithPremisesBaitedLessThan(Principal principal, @RequestParam("number") int number)
+			throws ParseException {
+		MyUser user;
 		if (principal != null) {
 			try {
-				userService.findByUsername(principal.getName());
+				user = userService.findByUsername(principal.getName());
 			} catch (EntityNotFoundException e) {
 				return null;
 			}
 		} else {
 			return null;
 		}
+		auditService.create(user, Util.getMethodName(), Integer.toString(number));
 
 		return rodentBaitingDAO.rodentBaitingWithPremisesBaitedLessThan(number);
 	}
-	
+
 	@RequestMapping(value = "/rodentBaitingWithGarbagePremisesBaitedLessThan", method = RequestMethod.GET)
 	public List<Object> rodentBaitingWithGarbagePremisesBaitedLessThan(Principal principal,
 			@RequestParam("number") int number) throws ParseException {
-
+		MyUser user;
 		if (principal != null) {
 			try {
-				userService.findByUsername(principal.getName());
+				user = userService.findByUsername(principal.getName());
 			} catch (EntityNotFoundException e) {
 				return null;
 			}
 		} else {
 			return null;
 		}
+		auditService.create(user, Util.getMethodName(), Integer.toString(number));
 
 		return rodentBaitingDAO.rodentBaitingWithGarbagePremisesBaitedLessThan(number);
 	}
 
-	
 	@RequestMapping(value = "/rodentBaitingWithRatsPremisesBaitedLessThan", method = RequestMethod.GET)
 	public List<Object> rodentBaitingWithRatsPremisesBaitedLessThan(Principal principal,
 			@RequestParam("number") int number) throws ParseException {
-
+		MyUser user;
 		if (principal != null) {
 			try {
-				userService.findByUsername(principal.getName());
+				user = userService.findByUsername(principal.getName());
 			} catch (EntityNotFoundException e) {
 				return null;
 			}
 		} else {
 			return null;
 		}
+		auditService.create(user, Util.getMethodName(), Integer.toString(number));
 
 		return rodentBaitingDAO.rodentBaitingWithRatsPremisesBaitedLessThan(number);
 	}

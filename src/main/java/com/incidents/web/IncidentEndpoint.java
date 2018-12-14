@@ -32,7 +32,9 @@ import com.incidents.exceptions.EntityNotFoundException;
 import com.incidents.repositories.IncidentDAO;
 import com.incidents.services.Users;
 import com.incidents.services.impl.AbandonedVehiclesService;
+import com.incidents.services.impl.AuditService;
 import com.incidents.services.impl.TreeTrimsService;
+import com.incidents.util.Util;
 
 @RestController
 public class IncidentEndpoint {
@@ -43,20 +45,24 @@ public class IncidentEndpoint {
 	@Autowired
 	private Users userService;
 
+	@Autowired
+	private AuditService auditService;
+
 	@RequestMapping(value = "/getTotalRequestsPerType", method = RequestMethod.GET)
 	public List<Object> getTotalRequestsPerType(Principal principal,
 			@RequestParam("fromDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fromDate,
 			@RequestParam("toDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date toDate) throws ParseException {
-
+		MyUser user;
 		if (principal != null) {
 			try {
-				userService.findByUsername(principal.getName());
+				user = userService.findByUsername(principal.getName());
 			} catch (EntityNotFoundException e) {
 				return null;
 			}
 		} else {
 			return null;
 		}
+		auditService.create(user, Util.getMethodName(), String.join(",", fromDate.toString(), toDate.toString()));
 
 		return inDao.getTotalRequestsPerType(fromDate, toDate);
 	}
@@ -68,16 +74,17 @@ public class IncidentEndpoint {
 			@RequestParam("type") TypeOfServiceRequest typeOfServiceRequest,
 			@RequestParam("fromDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fromDate,
 			@RequestParam("toDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date toDate) throws ParseException {
-
+		MyUser user;
 		if (principal != null) {
 			try {
-				userService.findByUsername(principal.getName());
+				user=userService.findByUsername(principal.getName());
 			} catch (EntityNotFoundException e) {
 				return null;
 			}
 		} else {
 			return null;
 		}
+		auditService.create(user, Util.getMethodName(), String.join(",", typeOfServiceRequest.toString(),fromDate.toString(), toDate.toString()));
 
 		List<Object> resultList = inDao.getTotalRequestsPerDayAndType(typeOfServiceRequest.name(), fromDate, toDate);
 		
@@ -101,16 +108,18 @@ public class IncidentEndpoint {
 			@RequestParam("start") int start,
 			@RequestParam("size") int size,
 			@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) throws ParseException {
-
+		MyUser user;
 		if (principal != null) {
 			try {
-				userService.findByUsername(principal.getName());
+				user=userService.findByUsername(principal.getName());
 			} catch (EntityNotFoundException e) {
 				return null;
 			}
 		} else {
 			return null;
 		}
+		
+		auditService.create(user, Util.getMethodName(), String.join(",", date.toString()));
 
 		List<Object> resultList = inDao.mostCommonServicePerZipCode(date);
 		
@@ -133,16 +142,18 @@ public class IncidentEndpoint {
 	public List<Object> avgCompletionTime(Principal principal,
 			@RequestParam("fromDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fromDate,
 			@RequestParam("toDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date toDate) throws ParseException {
-
+		MyUser user;
 		if (principal != null) {
 			try {
-				userService.findByUsername(principal.getName());
+				user=userService.findByUsername(principal.getName());
 			} catch (EntityNotFoundException e) {
 				return null;
 			}
 		} else {
 			return null;
 		}
+
+		auditService.create(user, Util.getMethodName(), String.join(",", fromDate.toString(),toDate.toString()));
 
 		return inDao.avgCompletionTime(fromDate, toDate);
 	}
@@ -151,17 +162,19 @@ public class IncidentEndpoint {
 	public List<Object> topFiveSSA(Principal principal,
 			@RequestParam("fromDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fromDate,
 			@RequestParam("toDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date toDate) throws ParseException {
-
+		MyUser user;
 		if (principal != null) {
 			try {
-				userService.findByUsername(principal.getName());
+				user=userService.findByUsername(principal.getName());
 			} catch (EntityNotFoundException e) {
 				return null;
 			}
 		} else {
 			return null;
 		}
-
+		
+		auditService.create(user, Util.getMethodName(), String.join(",", fromDate.toString(),toDate.toString()));
+		
 		return inDao.topFiveSSA(fromDate, toDate);
 	}
 }
