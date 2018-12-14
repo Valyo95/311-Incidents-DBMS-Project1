@@ -5,29 +5,28 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@Table(name="GARBAGE_CARTS")
-public class GarbageCarts implements Serializable{
+@Table(name = "GARBAGE_CARTS", indexes = { @Index(name = "SSA_INDEX", columnList = "SSA", unique = false) })
+public class GarbageCarts implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@OneToOne
 	@JoinColumn(name = "incident_id", referencedColumnName = "id")
-    private Incident incident;
-	
+	private Incident incident;
 
 	@Column(name = "BLACK_CARTS_DELIEVRED")
 	private Long blackCartsDelivered;
 
-	@Column(name = "CURRENT_ACTIVITY" , length = 200)
+	@Column(name = "CURRENT_ACTIVITY", length = 200)
 	private String currentActivity;
-	
-	@Column(name = "MOST_RECENT_ACTION" , length = 200)
+
+	@Column(name = "MOST_RECENT_ACTION", length = 200)
 	private String mostRecentAction;
 
-	@Column(name = "SSA" , length = 200)
+	@Column(name = "SSA", length = 200)
 	private String ssa;
 
 	public GarbageCarts() {
@@ -35,8 +34,8 @@ public class GarbageCarts implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public GarbageCarts(final Integer id, final Incident incident, final Long blackCartsDelivered, final String currentActivity,
-			final String mostRecentAction, final String ssa) {
+	public GarbageCarts(final Integer id, final Incident incident, final Long blackCartsDelivered,
+			final String currentActivity, final String mostRecentAction, final String ssa) {
 		super();
 		this.id = id;
 		this.incident = incident;

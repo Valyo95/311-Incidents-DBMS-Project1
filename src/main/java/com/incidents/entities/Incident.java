@@ -13,14 +13,16 @@ import org.hibernate.annotations.Type;
 import com.incidents.enumerations.TypeOfServiceRequest;
 
 @Entity
-@Table(name = "INCIDENT")
+@Table(name = "INCIDENT", indexes = {
+		@Index(name = "CREATION_DATE_INDEX", columnList = "CREATION_DATE", unique = false),
+		@Index(name = "SERVICE_REQUEST_TYPE_INDEX", columnList = "SERVICE_REQUEST_TYPE", unique = false) })
 public class Incident implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@Column(name = "srn", length = 200)
 	private String srn;
 

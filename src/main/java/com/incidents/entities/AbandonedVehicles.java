@@ -5,7 +5,8 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ABANDONED_VEHICLES")
+@Table(name = "ABANDONED_VEHICLES", indexes = {
+		@Index(name = "SSA_INDEX", columnList = "SSA", unique = false) })
 public class AbandonedVehicles implements Serializable {
 	private static final long serialVersionUID = 1L;
 
