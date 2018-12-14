@@ -27,4 +27,14 @@ public interface IncidentDAO extends JpaRepository<Incident, String>{
 
 	@Query(value = "select * from topfivessa(?1, ?2)", nativeQuery = true)
     List<Object> topFiveSSA(Date start_date, Date end_date);
+	
+	List<Incident> findByZipCode(String zipCode);
+	List<Incident> findByStreetAddress(String streetAddress);
+	List<Incident> findByType(TypeOfServiceRequest type);
+	
+	List<Incident> findByZipCodeAndStreetAddress(String zipCode, String streeAddress);
+	List<Incident> findByZipCodeAndType(String zipCode, TypeOfServiceRequest type);
+	List<Incident> findByStreetAddressAndType(String streeAddress, TypeOfServiceRequest type);
+	
+	List<Incident> findByStreetAddressAndZipCodeAndType(String streeAddress, String zipCode, TypeOfServiceRequest type);
 }
