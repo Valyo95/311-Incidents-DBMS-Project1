@@ -15,7 +15,9 @@ import com.incidents.enumerations.TypeOfServiceRequest;
 @Entity
 @Table(name = "INCIDENT", indexes = {
 		@Index(name = "CREATION_DATE_INDEX", columnList = "CREATION_DATE", unique = false),
-		@Index(name = "SERVICE_REQUEST_TYPE_INDEX", columnList = "SERVICE_REQUEST_TYPE", unique = false) })
+		@Index(name = "SERVICE_REQUEST_TYPE_INDEX", columnList = "SERVICE_REQUEST_TYPE", unique = false),
+		@Index(name = "STREET_ADDRESS_INDEX", columnList = "STREET_ADDRESS", unique = false), 
+		@Index(name = "ZIP_CODE_INDEX", columnList = "ZIP_CODE", unique = false) })
 public class Incident implements Serializable {
 	private static final long serialVersionUID = 1L;
 
