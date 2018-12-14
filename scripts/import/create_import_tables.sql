@@ -250,7 +250,7 @@ CREATE TABLE IF NOT EXISTS tree_trims_import
 (
 Creation_Date timestamp,
 Status text,
-Completion_Date timesta	mp,
+Completion_Date timestamp,
 Service_Request_Number text,
 Type_of_Service_Request text,
 trees_location text,
